@@ -1,0 +1,40 @@
+﻿@page "/BasicData/Customers/Details/{id}"
+@using SCMSupplyChain.ViewModel.BasicData.CustomersVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" >
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
+
+            <Display @bind-Value="@Model.Entity.CusName"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.CusGrade"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.CusCompany"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.CusMan"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.CusTelephone"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.CusDesc"   ShowLabel="true"/>
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private CustomersVM Model = new CustomersVM();
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var rv = await WtmBlazor.Api.CallAPI<CustomersVM>($"/api/Customers/{id}");
+        Model = rv.Data;
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

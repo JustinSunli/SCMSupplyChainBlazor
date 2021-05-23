@@ -1,0 +1,45 @@
+﻿@page "/BasicData/ProductLend/Details/{id}"
+@using SCMSupplyChain.ViewModel.BasicData.ProductLendVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" >
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
+
+            <Display @bind-Value="@Model.Entity.PPName"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.PPCompany"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.PPMan"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.PPTel"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.PPAddress"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.PPFax"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Email"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.PPUrl"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.PPBank"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.PPGoods"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.PPDesc"   ShowLabel="true"/>
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private ProductLendVM Model = new ProductLendVM();
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var rv = await WtmBlazor.Api.CallAPI<ProductLendVM>($"/api/ProductLend/{id}");
+        Model = rv.Data;
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

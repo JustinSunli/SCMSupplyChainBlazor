@@ -21,7 +21,6 @@ namespace SCMSupplyChain.Model
         public string PTName { get; set; }
 
         [Display(Name = "描述")]
-        [Required(ErrorMessage = "描述不能为空")]
         [StringLength(200, ErrorMessage = "描述超过最长限制,200内")]
         public string PTDes { get; set; }
     }

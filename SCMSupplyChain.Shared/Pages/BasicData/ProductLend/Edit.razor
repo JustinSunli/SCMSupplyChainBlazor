@@ -1,0 +1,52 @@
+﻿@page "/BasicData/ProductLend/Edit/{id}"
+@using SCMSupplyChain.ViewModel.BasicData.ProductLendVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" OnValidSubmit="@Submit">
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
+
+            <BootstrapInput @bind-Value="@Model.Entity.PPName"  />
+            <BootstrapInput @bind-Value="@Model.Entity.PPCompany"  />
+            <BootstrapInput @bind-Value="@Model.Entity.PPMan"  />
+            <BootstrapInput @bind-Value="@Model.Entity.PPTel"  />
+            <BootstrapInput @bind-Value="@Model.Entity.PPAddress"  />
+            <BootstrapInput @bind-Value="@Model.Entity.PPFax"  />
+            <BootstrapInput @bind-Value="@Model.Entity.Email"  />
+            <BootstrapInput @bind-Value="@Model.Entity.PPUrl"  />
+            <BootstrapInput @bind-Value="@Model.Entity.PPBank"  />
+            <BootstrapInput @bind-Value="@Model.Entity.PPGoods"  />
+            <BootstrapInput @bind-Value="@Model.Entity.PPDesc"  />
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+        <Button Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Edit"]" IsAsync="true" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private ProductLendVM Model = new ProductLendVM();
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var rv = await WtmBlazor.Api.CallAPI<ProductLendVM>($"/api/ProductLend/{id}");
+        Model = rv.Data;
+         await base.OnInitializedAsync();
+   }
+
+    private async Task Submit(EditContext context)
+    {
+        await PostsForm(vform, $"/api/ProductLend/edit", (s) => "Sys.OprationSuccess", method: HttpMethodEnum.PUT);
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

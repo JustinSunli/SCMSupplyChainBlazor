@@ -1,0 +1,42 @@
+﻿@page "/BasicData/Products/Details/{id}"
+@using SCMSupplyChain.ViewModel.BasicData.ProductsVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" >
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
+
+            <Display @bind-Value="@Model.Entity.ProMax"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.ProMin"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.ProdName"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.ProWorkShop"   ShowLabel="true"/>
+            <WTUploadImage @bind-Value="@Model.Entity.PhotoId"  IsDisabled="true" ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.ProInPrice"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.ProPrice"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.ProDesc"   ShowLabel="true"/>
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private ProductsVM Model = new ProductsVM();
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var rv = await WtmBlazor.Api.CallAPI<ProductsVM>($"/api/Products/{id}");
+        Model = rv.Data;
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

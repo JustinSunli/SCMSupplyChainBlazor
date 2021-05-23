@@ -1,0 +1,44 @@
+﻿@page "/BasicData/Customers/Create"
+@using SCMSupplyChain.ViewModel.BasicData.CustomersVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" OnValidSubmit="@Submit">
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
+
+            <BootstrapInput @bind-Value="@Model.Entity.CusName"  />
+            <Select @bind-Value="@Model.Entity.CusGrade"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@Model.Entity.CusCompany"  />
+            <BootstrapInput @bind-Value="@Model.Entity.CusMan"  />
+            <BootstrapInput @bind-Value="@Model.Entity.CusTelephone"  />
+            <BootstrapInput @bind-Value="@Model.Entity.CusDesc"  />
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+        <Button Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Create"]" IsAsync="true" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private CustomersVM Model = new CustomersVM();
+    private ValidateForm vform { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        await base.OnInitializedAsync();
+    }
+
+
+    private async Task Submit(EditContext context)
+    {
+        await PostsForm(vform, "/api/Customers/add", (s) => "Sys.OprationSuccess");
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

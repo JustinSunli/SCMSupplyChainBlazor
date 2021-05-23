@@ -1,0 +1,45 @@
+﻿@page "/BasicData/ProductTypes/Create"
+@using SCMSupplyChain.ViewModel.BasicData.ProductTypesVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" OnValidSubmit="@Submit">
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
+
+            <Select @bind-Value="@Model.Entity.ParentId" Items="@AllProductTypess" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@Model.Entity.PTName"  />
+            <BootstrapInput @bind-Value="@Model.Entity.PTDes"  />
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+        <Button Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Create"]" IsAsync="true" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private ProductTypesVM Model = new ProductTypesVM();
+    private ValidateForm vform { get; set; }
+
+    private List<SelectedItem> AllProductTypess = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllProductTypess = await WtmBlazor.Api.CallItemsApi("/api/ProductTypes/GetProductTypess", placeholder: WtmBlazor.Localizer["Sys.PleaseSelect"]);
+
+        await base.OnInitializedAsync();
+    }
+
+
+    private async Task Submit(EditContext context)
+    {
+        await PostsForm(vform, "/api/ProductTypes/add", (s) => "Sys.OprationSuccess");
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}
