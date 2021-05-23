@@ -1,0 +1,43 @@
+﻿@page "/InboundData/Stocks/Details/{id}"
+@using SCMSupplyChain.ViewModel.InboundData.StocksVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" >
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
+
+            <Display @bind-Value="@Model.Entity.StockID"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.ProductLendID" Data="@AllProductLends"  ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.StockInDate"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.StockState"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.StockDesc"   ShowLabel="true"/>
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private StocksVM Model = new StocksVM();
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+    private List<SelectedItem> AllProductLends = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllProductLends = await WtmBlazor.Api.CallItemsApi("/api/Stocks/GetProductLends", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        var rv = await WtmBlazor.Api.CallAPI<StocksVM>($"/api/Stocks/{id}");
+        Model = rv.Data;
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

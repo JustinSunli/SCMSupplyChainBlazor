@@ -1,0 +1,168 @@
+﻿@page "/InboundData/StockInDepot"
+@using SCMSupplyChain.ViewModel.InboundData.StockInDepotVMs;
+@inherits BasePage
+@attribute [ActionDescription("采购入库", "SCMSupplyChain.Controllers,StockInDepot")]
+
+<WTSearchPanel OnSearch="@DoSearch">
+    <ValidateForm Model="@SearchModel">
+        <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Inline">
+
+            <Select @bind-Value="@SearchModel.ProductLendID" Items="@AllProductLends" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <Select @bind-Value="@SearchModel.DepotsID" Items="@AllDepotss" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <Select @bind-Value="@SearchModel.StocksID" Items="@AllStockss" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <WTDateRange @bind-Value="@SearchModel.SIDDate"  />
+        </Row>
+    </ValidateForm>
+</WTSearchPanel>
+
+
+
+<Table @ref="dataTable" TItem="StockInDepot_View" OnQueryAsync="OnSearch" IsPagination="true" IsStriped="true" IsBordered="true" ShowRefresh="false"
+       ShowToolbar="true" IsMultipleSelect="true" ShowExtendButtons="true" ShowDefaultButtons="false" style="margin-top:10px;">
+    <TableColumns>
+
+        <TableColumn @bind-Field="@context.SIDID"  />
+        <TableColumn @bind-Field="@context.PPName_view"  />
+        <TableColumn @bind-Field="@context.DepotName_view"  />
+        <TableColumn @bind-Field="@context.StockID_view"  />
+        <TableColumn @bind-Field="@context.SIDDate" FormatString="yyyy-MM-dd HH: mm: ss" />
+        <TableColumn @bind-Field="@context.SIDDeliver"  />
+        <TableColumn @bind-Field="@context.SIDFreight"  />
+        <TableColumn @bind-Field="@context.SIDData"  />
+    </TableColumns>
+    <TableToolbarTemplate>
+        @if (IsAccessable("/api/StockInDepot/add"))
+        {
+            <TableToolbarButton TItem="StockInDepot_View" Color="Color.Primary" Icon="fa fa-fw fa-plus" Text="@WtmBlazor.Localizer["Sys.Create"]" OnClickCallback="OnCreateClick" />
+        }
+        @if (IsAccessable("/api/StockInDepot/BatchDelete"))
+        {
+            <TableToolbarPopconfirmButton TItem="StockInDepot_View" Color="Color.Primary"
+                                          Icon="fa fa-fw fa-trash-o" Text="@WtmBlazor.Localizer["Sys.BatchDelete"]"
+                                          OnConfirm="@OnBatchDeleteClick" Content="@WtmBlazor.Localizer["Sys.BatchDeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]"
+                                          ConfirmButtonText="@WtmBlazor.Localizer["Sys.BatchDelete"]" ConfirmButtonColor="Color.Danger" />
+        }
+        
+        @if (IsAccessable("/api/StockInDepot/Import"))
+        {
+            <TableToolbarButton TItem="StockInDepot_View" Color="Color.Primary" Icon="fa fa-fw fa-upload" Text="@WtmBlazor.Localizer["Sys.Import"]" OnClickCallback="@OnImportClick" />
+        }
+        @if (IsAccessable("/api/StockInDepot/ExportExcel"))
+        {
+            <TableToolbarButton TItem="StockInDepot_View" Color="Color.Primary" Icon="fa fa-fw fa-download" Text="@WtmBlazor.Localizer["Sys.Export"]" OnClickCallback="@OnExportClick" IsAsync="true" />
+        }
+    </TableToolbarTemplate>
+    <RowButtonTemplate>
+        <div style="padding-right:10px;">
+            @if (IsAccessable("/api/StockInDepot/Edit"))
+            {
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Success" Icon="fa fa-edit" Text="@WtmBlazor.Localizer["Sys.Edit"]" OnClickCallback="() => OnEditClick(context)" />
+            }
+            @if (IsAccessable("/api/StockInDepot/{id}"))
+            {
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa fa-info" Text="@WtmBlazor.Localizer["Sys.Details"]" OnClickCallback="()=>OnDetailsClick(context)" />
+            }
+            @if (IsAccessable("/api/StockInDepot/BatchDelete"))
+            {
+                <PopConfirmButton Icon="fa fa-trash-o" Text="@WtmBlazor.Localizer["Sys.Delete"]" OnConfirm="() => OnDeleteClick(context)" Color="Color.Danger" Size="Size.ExtraSmall"
+                                  Content="@WtmBlazor.Localizer["Sys.DeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]" ConfirmButtonText="@WtmBlazor.Localizer["Sys.Delete"]" ConfirmButtonColor="Color.Danger" />
+            }
+        </div>
+    </RowButtonTemplate>
+</Table>
+
+@code{
+
+    private StockInDepotSearcher SearchModel = new StockInDepotSearcher();
+    private Table<StockInDepot_View> dataTable;
+
+    private List<SelectedItem> AllProductLends = new List<SelectedItem>();
+
+    private List<SelectedItem> AllDepotss = new List<SelectedItem>();
+
+    private List<SelectedItem> AllStockss = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllProductLends = await WtmBlazor.Api.CallItemsApi("/api/StockInDepot/GetProductLends", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        AllDepotss = await WtmBlazor.Api.CallItemsApi("/api/StockInDepot/GetDepotss", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        AllStockss = await WtmBlazor.Api.CallItemsApi("/api/StockInDepot/GetStockss", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task<QueryData<StockInDepot_View>> OnSearch(QueryPageOptions opts)
+    {
+        return await StartSearch<StockInDepot_View>("/api/StockInDepot/search", SearchModel, opts);
+    }
+
+    private void DoSearch()
+    {
+        dataTable.QueryAsync();
+    }
+
+    private async Task OnCreateClick(IEnumerable<StockInDepot_View> items)
+    {
+        if (await OpenDialog<Create>(WtmBlazor.Localizer["Sys.Create"]) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+    private async Task OnEditClick(StockInDepot_View item)
+    {
+        if (await OpenDialog<Edit>(WtmBlazor.Localizer["Sys.Edit"], x => x.id == item.ID.ToString()) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+    private async Task OnDetailsClick(StockInDepot_View item)
+    {
+        await OpenDialog<Details>(WtmBlazor.Localizer["Sys.Details"], x => x.id == item.ID.ToString());
+    }
+
+    private async Task OnBatchDeleteClick()
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await PostsData(dataTable.SelectedRows.Select(x => x.ID).ToList(), $"/api/StockInDepot/batchdelete", (s) => WtmBlazor.Localizer["Sys.BatchDeleteSuccess", s]);
+            await dataTable.QueryAsync();
+        }
+        else
+        {
+            await WtmBlazor.Toast.Information(WtmBlazor.Localizer["Sys.Info"], WtmBlazor.Localizer["Sys.SelectOneRowMin"]);
+        }
+    }
+
+    private async Task OnDeleteClick(StockInDepot_View item)
+    {
+        await PostsData(new List<string> { item.ID.ToString() }, $"/api/StockInDepot/batchdelete", (s) => "Sys.OprationSuccess");
+        await dataTable.QueryAsync();
+    }
+
+
+    private async Task OnExportClick(IEnumerable<StockInDepot_View> items)
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await Download("/api/StockInDepot/ExportExcelByIds", dataTable.SelectedRows.Select(x => x.ID.ToString()).ToList());
+        }
+        else
+        {
+            await Download("/api/StockInDepot/ExportExcel", SearchModel);
+        }
+    }
+    private async Task OnImportClick(IEnumerable<StockInDepot_View> items)
+    {
+        if (await OpenDialog<Import>(WtmBlazor.Localizer["Sys.Import"]) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+}

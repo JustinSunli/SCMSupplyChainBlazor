@@ -1,0 +1,55 @@
+﻿@page "/InboundData/StockInDepot/Details/{id}"
+@using SCMSupplyChain.ViewModel.InboundData.StockInDepotVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" >
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
+
+            <Display @bind-Value="@Model.Entity.SIDID"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.ProductLendID" Data="@AllProductLends"  ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.DepotsID" Data="@AllDepotss"  ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.StocksID" Data="@AllStockss"  ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.SIDDate"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.SIDDeliver"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.SIDFreight"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.SIDData"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.SIDDesc"   ShowLabel="true"/>
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private StockInDepotVM Model = new StockInDepotVM();
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+    private List<SelectedItem> AllProductLends = new List<SelectedItem>();
+
+    private List<SelectedItem> AllDepotss = new List<SelectedItem>();
+
+    private List<SelectedItem> AllStockss = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllProductLends = await WtmBlazor.Api.CallItemsApi("/api/StockInDepot/GetProductLends", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        AllDepotss = await WtmBlazor.Api.CallItemsApi("/api/StockInDepot/GetDepotss", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        AllStockss = await WtmBlazor.Api.CallItemsApi("/api/StockInDepot/GetStockss", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        var rv = await WtmBlazor.Api.CallAPI<StockInDepotVM>($"/api/StockInDepot/{id}");
+        Model = rv.Data;
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}
