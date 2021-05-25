@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>SCM供应链</title>
+  <title>测试1</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta content="bootstrap,blazor,wasm,webassembly,UI,netcore,web,assembly" name="Keywords">
@@ -18,45 +18,31 @@
   <link rel="stylesheet" href="_content/SCMSupplyChain.Shared/font/iconfont.css">
   <link rel="stylesheet" href="SCMSupplyChain.styles.css">
 </head>
-
 <body class="overflow-hidden">
-  <app></app>
-
-  <div class="loader" id="loading">
-    <!--<div class="logo">
-      <div class="one common"></div>
-      <div class="two common"></div>
-      <div class="three common"></div>
-      <div class="four common"></div>
-      <div class="five common"></div>
-      <div class="six common"></div>
-      <div class="seven common"></div>
-      <div class="eight common"></div>
-    </div>-->
-    <div class="intro">
-      <img src="_content/SCMSupplyChain.Shared/images/logo.png" />
-      <span>SCM供应链</span>
+    <app>
+        <div id="datetime" style="margin-top: 220px; text-align: center;"></div>
+    </app>  
+    
+    <!--刷新显示-->
+    <div class="loader" id="loading">
+        <div class="intro">
+            <img src="_content/SCMSupplyChain.Shared/images/logo.png" />
+            <span>测试2</span>
+        </div>
+        <div class="bar">
+            <div class="progress"></div>
+        </div>
     </div>
-    <div class="bar">
-      <div class="progress"></div>
+
+    <div id="blazor-error-ui">
+
     </div>
-  </div>
 
-  <div id="blazor-error-ui">
-    <!--<environment include="Staging,Production">
-      An error has occurred. This application may no longer respond until reloaded.
-    </environment>
-    <environment include="Development">
-      An unhandled exception has occurred. See browser dev tools for details.
-    </environment>
-    <a href="" class="reload">Reload</a>
-    <a class="dismiss"><i class="fa fa-times"></i></a>-->
-  </div>
-
-  <script src="_framework/blazor.webassembly.js"></script>
-  <script>navigator.serviceWorker.register('service-worker.js');</script>
-  <script src="_content/BootstrapBlazor/js/bootstrap.blazor.bundle.min.js"></script>
-  <script src="_content/SCMSupplyChain.Shared/js/common.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>navigator.serviceWorker.register('service-worker.js');</script>
+    <script src="_content/BootstrapBlazor/js/bootstrap.blazor.bundle.min.js"></script>
+    <script src="_content/SCMSupplyChain.Shared/js/common.js"></script>
+    <script src="_content/SCMSupplyChain.Shared/js/datetime.js"></script>
 </body>
 
 </html>
