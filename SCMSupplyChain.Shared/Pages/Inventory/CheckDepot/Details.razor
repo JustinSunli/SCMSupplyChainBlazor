@@ -1,0 +1,46 @@
+﻿@page "/Inventory/CheckDepot/Details/{id}"
+@using SCMSupplyChain.ViewModel.Inventory.CheckDepotVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" >
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
+
+            <Display @bind-Value="@Model.Entity.DepotsID" Data="@AllDepotss"  ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.FrameworkUserID" Data="@AllFrameworkUsers"  ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.CDState"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.CDDesc"   ShowLabel="true"/>
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private CheckDepotVM Model = new CheckDepotVM();
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+    private List<SelectedItem> AllDepotss = new List<SelectedItem>();
+
+    private List<SelectedItem> AllFrameworkUsers = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllDepotss = await WtmBlazor.Api.CallItemsApi("/api/CheckDepot/GetDepotss", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        AllFrameworkUsers = await WtmBlazor.Api.CallItemsApi("/api/CheckDepot/GetFrameworkUsers", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        var rv = await WtmBlazor.Api.CallAPI<CheckDepotVM>($"/api/CheckDepot/{id}");
+        Model = rv.Data;
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

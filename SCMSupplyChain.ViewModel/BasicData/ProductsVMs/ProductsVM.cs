@@ -15,6 +15,8 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
 
         public ProductsVM()
         {
+            SetInclude(x => x.ProductUnit);
+            SetInclude(x => x.ProductTypes);
         }
 
         protected override void InitVM()

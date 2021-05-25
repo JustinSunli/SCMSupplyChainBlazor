@@ -1,0 +1,46 @@
+﻿@page "/InboundData/OtherInDepot/Create"
+@using SCMSupplyChain.ViewModel.InboundData.OtherInDepotVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" OnValidSubmit="@Submit">
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
+
+            <BootstrapInput @bind-Value="@Model.Entity.OIDID"  />
+            <Select @bind-Value="@Model.Entity.DepotsID" Items="@AllDepotss" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <Select @bind-Value="@Model.Entity.OIDState"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@Model.Entity.OIDDesc"  />
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+        <Button Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Create"]" IsAsync="true" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private OtherInDepotVM Model = new OtherInDepotVM();
+    private ValidateForm vform { get; set; }
+
+    private List<SelectedItem> AllDepotss = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllDepotss = await WtmBlazor.Api.CallItemsApi("/api/OtherInDepot/GetDepotss", placeholder: WtmBlazor.Localizer["Sys.PleaseSelect"]);
+
+        await base.OnInitializedAsync();
+    }
+
+
+    private async Task Submit(EditContext context)
+    {
+        await PostsForm(vform, "/api/OtherInDepot/add", (s) => "Sys.OprationSuccess");
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

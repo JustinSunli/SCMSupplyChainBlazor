@@ -1,0 +1,51 @@
+﻿@page "/InboundData/SaleReturn/Create"
+@using SCMSupplyChain.ViewModel.InboundData.SaleReturnVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" OnValidSubmit="@Submit">
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
+
+            <BootstrapInput @bind-Value="@Model.Entity.SRID"  />
+            <Select @bind-Value="@Model.Entity.CustomersID" Items="@AllCustomerss" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <Select @bind-Value="@Model.Entity.DepotsID" Items="@AllDepotss" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <Select @bind-Value="@Model.Entity.SRState"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@Model.Entity.SRDesc"  />
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+        <Button Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Create"]" IsAsync="true" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private SaleReturnVM Model = new SaleReturnVM();
+    private ValidateForm vform { get; set; }
+
+    private List<SelectedItem> AllCustomerss = new List<SelectedItem>();
+
+    private List<SelectedItem> AllDepotss = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllCustomerss = await WtmBlazor.Api.CallItemsApi("/api/SaleReturn/GetCustomerss", placeholder: WtmBlazor.Localizer["Sys.PleaseSelect"]);
+
+        AllDepotss = await WtmBlazor.Api.CallItemsApi("/api/SaleReturn/GetDepotss", placeholder: WtmBlazor.Localizer["Sys.PleaseSelect"]);
+
+        await base.OnInitializedAsync();
+    }
+
+
+    private async Task Submit(EditContext context)
+    {
+        await PostsForm(vform, "/api/SaleReturn/add", (s) => "Sys.OprationSuccess");
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

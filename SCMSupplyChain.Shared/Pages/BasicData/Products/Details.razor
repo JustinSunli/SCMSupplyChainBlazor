@@ -5,6 +5,8 @@
 <ValidateForm @ref="vform" Model="@Model" >
     <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
 
+            <Display @bind-Value="@Model.Entity.ProductUnitID" Data="@AllProductUnits"  ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.ProductTypesID" Data="@AllProductTypess"  ShowLabel="true"/>
             <Display @bind-Value="@Model.Entity.ProMax"   ShowLabel="true"/>
             <Display @bind-Value="@Model.Entity.ProMin"   ShowLabel="true"/>
             <Display @bind-Value="@Model.Entity.ProdName"   ShowLabel="true"/>
@@ -26,9 +28,17 @@
     [Parameter]
     public string id { get; set; }
 
+    private List<SelectedItem> AllProductUnits = new List<SelectedItem>();
+
+    private List<SelectedItem> AllProductTypess = new List<SelectedItem>();
+
 
     protected override async Task OnInitializedAsync()
     {
+
+        AllProductUnits = await WtmBlazor.Api.CallItemsApi("/api/Products/GetProductUnits", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        AllProductTypess = await WtmBlazor.Api.CallItemsApi("/api/Products/GetProductTypess", placeholder: WtmBlazor.Localizer["Sys.All"]);
 
         var rv = await WtmBlazor.Api.CallAPI<ProductsVM>($"/api/Products/{id}");
         Model = rv.Data;

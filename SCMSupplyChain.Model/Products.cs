@@ -7,10 +7,27 @@ namespace SCMSupplyChain.Model
     [Display(Name = "商品")]
     public class Products : PersistPoco
     {
+        [Display(Name = "商品规格")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public Guid ProductUnitID { get; set; }
+
+        [Display(Name = "商品规格")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public ProductUnit ProductUnit { get; set; }
+
+        [Display(Name = "商品类别")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public Guid ProductTypesID { get; set; }
+
+        [Display(Name = "商品类别")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public ProductTypes ProductTypes { get; set; }
+
         [Display(Name = "库存上限")]
         [Required(ErrorMessage = "{0}不能为空")]
         [RegularExpression(@"^[0-9]*[1-9][0-9]*$", ErrorMessage = "请输入正确的库存")]
         public int ProMax { get; set; }
+
         [Display(Name = "库存下限")]
         [Required(ErrorMessage = "{0}不能为空")]
         [RegularExpression(@"^[0-9]*[1-9][0-9]*$", ErrorMessage = "请输入正确的库存")]

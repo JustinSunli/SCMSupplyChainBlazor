@@ -8,9 +8,11 @@ namespace SCMSupplyChain.Model
     public class CustomerOrder: PersistPoco
     {
         [Display(Name ="客户名称")]
-        public Guid? CustomersID { get; set; }
+        [Required(ErrorMessage = "{0}不能为空")]
+        public Guid CustomersID { get; set; }
 
         [Display(Name = "客户名称")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public Customers Customers { get; set; }
 
         [Display(Name = "交货时间")]

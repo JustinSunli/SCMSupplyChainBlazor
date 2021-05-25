@@ -12,6 +12,10 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
 {
     public partial class ProductsTemplateVM : BaseTemplateVM
     {
+        [Display(Name = "商品规格")]
+        public ExcelPropety ProductUnit_Excel = ExcelPropety.CreateProperty<Products>(x => x.ProductUnitID);
+        [Display(Name = "商品类别")]
+        public ExcelPropety ProductTypes_Excel = ExcelPropety.CreateProperty<Products>(x => x.ProductTypesID);
         [Display(Name = "库存上限")]
         public ExcelPropety ProMax_Excel = ExcelPropety.CreateProperty<Products>(x => x.ProMax);
         [Display(Name = "库存下限")]
@@ -29,6 +33,10 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
 
 	    protected override void InitVM()
         {
+            ProductUnit_Excel.DataType = ColumnDataType.ComboBox;
+            ProductUnit_Excel.ListItems = DC.Set<ProductUnit>().GetSelectListItems(Wtm, y => y.PUName);
+            ProductTypes_Excel.DataType = ColumnDataType.ComboBox;
+            ProductTypes_Excel.ListItems = DC.Set<ProductTypes>().GetSelectListItems(Wtm, y => y.PTName);
         }
 
     }

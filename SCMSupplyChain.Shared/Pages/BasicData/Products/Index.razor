@@ -7,8 +7,6 @@
     <ValidateForm Model="@SearchModel">
         <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Inline">
 
-            <BootstrapInput @bind-Value="@SearchModel.ProdName"  />
-            <BootstrapInput @bind-Value="@SearchModel.ProWorkShop"  />
         </Row>
     </ValidateForm>
 </WTSearchPanel>
@@ -19,6 +17,8 @@
        ShowToolbar="true" IsMultipleSelect="true" ShowExtendButtons="true" ShowDefaultButtons="false" style="margin-top:10px;">
     <TableColumns>
 
+        <TableColumn @bind-Field="@context.PUName_view"  />
+        <TableColumn @bind-Field="@context.PTName_view"  />
         <TableColumn @bind-Field="@context.ProMax"  />
         <TableColumn @bind-Field="@context.ProMin"  />
         <TableColumn @bind-Field="@context.ProdName"  />
@@ -31,7 +31,6 @@
         </TableColumn>
         <TableColumn @bind-Field="@context.ProInPrice"  />
         <TableColumn @bind-Field="@context.ProPrice"  />
-        
     </TableColumns>
     <TableToolbarTemplate>
         @if (IsAccessable("/api/Products/add"))

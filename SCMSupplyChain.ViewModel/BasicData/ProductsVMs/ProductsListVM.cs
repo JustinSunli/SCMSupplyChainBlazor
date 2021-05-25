@@ -17,6 +17,8 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
         protected override IEnumerable<IGridColumn<Products_View>> InitGridHeader()
         {
             return new List<GridColumn<Products_View>>{
+                this.MakeGridHeader(x => x.PUName_view),
+                this.MakeGridHeader(x => x.PTName_view),
                 this.MakeGridHeader(x => x.ProMax),
                 this.MakeGridHeader(x => x.ProMin),
                 this.MakeGridHeader(x => x.ProdName),
@@ -24,7 +26,6 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
                 this.MakeGridHeader(x => x.PhotoId).SetFormat(PhotoIdFormat),
                 this.MakeGridHeader(x => x.ProInPrice),
                 this.MakeGridHeader(x => x.ProPrice),
-                this.MakeGridHeader(x => x.ProDesc),
                 this.MakeGridHeaderAction(width: 200)
             };
         }
@@ -41,11 +42,11 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
         public override IOrderedQueryable<Products_View> GetSearchQuery()
         {
             var query = DC.Set<Products>()
-                .CheckContain(Searcher.ProdName, x=>x.ProdName)
-                .CheckContain(Searcher.ProWorkShop, x=>x.ProWorkShop)
                 .Select(x => new Products_View
                 {
 				    ID = x.ID,
+                    PUName_view = x.ProductUnit.PUName,
+                    PTName_view = x.ProductTypes.PTName,
                     ProMax = x.ProMax,
                     ProMin = x.ProMin,
                     ProdName = x.ProdName,
@@ -53,7 +54,6 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
                     PhotoId = x.PhotoId,
                     ProInPrice = x.ProInPrice,
                     ProPrice = x.ProPrice,
-                    ProDesc = x.ProDesc,
                 })
                 .OrderBy(x => x.ID);
             return query;
@@ -62,6 +62,10 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
     }
 
     public class Products_View : Products{
+        [Display(Name = "名称")]
+        public String PUName_view { get; set; }
+        [Display(Name = "名称")]
+        public String PTName_view { get; set; }
 
     }
 }

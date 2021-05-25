@@ -8,21 +8,27 @@ namespace SCMSupplyChain.Model
     public class CheckDepotDetail : PersistPoco
     {
         [Display(Name = "盘点单号")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public Guid? CheckDepotID { get; set; }
+
         [Display(Name = "盘点单号")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public CheckDepot CheckDepot { get; set; }
 
         [Display(Name = "商品")]
-        public Guid? ProductsID { get; set; }
+        [Required(ErrorMessage = "{0}不能为空")]
+        public Guid ProductsID { get; set; }
+
         [Display(Name = "商品")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public Products Products { get; set; }
 
         [Display(Name = "盘点数量")]
-        [Required(ErrorMessage = "盘点数量不允许为空")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public int CDDAmount1 { get; set; }
 
         [Display(Name = "应有数量")]
-        [Required(ErrorMessage = "应有数量不允许为空")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public int DevAmount2 { get; set; }
 
         [Display(Name ="备注")]

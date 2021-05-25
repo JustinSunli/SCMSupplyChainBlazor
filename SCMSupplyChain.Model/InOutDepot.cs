@@ -8,7 +8,7 @@ namespace SCMSupplyChain.Model
     public class InOutDepot : PersistPoco
     {
         [Display(Name = "出库记录号")]
-        [Required(ErrorMessage = "出库记录号不能为空")]
+        [Required(ErrorMessage = "{0}不能为空")]
         [StringLength(100, ErrorMessage = "出库记录号超最长限制,100内")]
         public string IODID { get; set; }
 
@@ -16,8 +16,10 @@ namespace SCMSupplyChain.Model
         public IODType IODType { get; set; }
 
         [Display(Name = "仓库")]
-        public Guid? DepotID { get; set; }
+        [Required(ErrorMessage = "{0}不能为空")]
+        public Guid? DepotsID { get; set; }
         [Display(Name = "仓库")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public Depots Depots { get; set; }
 
 

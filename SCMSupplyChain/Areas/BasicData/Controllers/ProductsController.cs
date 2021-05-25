@@ -165,5 +165,17 @@ namespace SCMSupplyChain.Controllers
         }
 
 
+        [HttpGet("GetProductUnits")]
+        public ActionResult GetProductUnits()
+        {
+            return Ok(DC.Set<ProductUnit>().GetSelectListItems(Wtm, x => x.PUName));
+        }
+
+        [HttpGet("GetProductTypess")]
+        public ActionResult GetProductTypess()
+        {
+            return Ok(DC.Set<ProductTypes>().GetSelectListItems(Wtm, x => x.PTName));
+        }
+
     }
 }

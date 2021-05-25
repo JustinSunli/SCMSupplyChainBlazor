@@ -1,0 +1,42 @@
+﻿@page "/Inventory/Losts/Details/{id}"
+@using SCMSupplyChain.ViewModel.Inventory.LostsVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" >
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
+
+            <Display @bind-Value="@Model.Entity.LostID"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.DepotsID" Data="@AllDepotss"  ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.LostDesc"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.LostState"   ShowLabel="true"/>
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private LostsVM Model = new LostsVM();
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+    private List<SelectedItem> AllDepotss = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllDepotss = await WtmBlazor.Api.CallItemsApi("/api/Losts/GetDepotss", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        var rv = await WtmBlazor.Api.CallAPI<LostsVM>($"/api/Losts/{id}");
+        Model = rv.Data;
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

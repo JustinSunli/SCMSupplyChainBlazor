@@ -7,22 +7,26 @@ namespace SCMSupplyChain.Model
     [Display(Name ="盘点单")]
     public class CheckDepot : PersistPoco
     {
-
         [Display(Name = "调出仓库")]
-        public Guid? DepotsID { get; set; }
+        [Required(ErrorMessage="{0}不能为空")]
+        public Guid DepotsID { get; set; }
         [Display(Name = "调出仓库")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public Depots Depots { get; set; }
 
         [Display(Name = "盘点人")]
-        public Guid? FrameworkUserID { get; set; }
+        [Required(ErrorMessage = "{0}不能为空")]
+        public Guid FrameworkUserID { get; set; }
         [Display(Name = "盘点人")]
-        public FrameworkUserBase FrameworkUserBase { get; set; }
+        [Required(ErrorMessage = "{0}不能为空")]
+        public FrameworkUser FrameworkUser { get; set; }
 
+        [Display(Name = "状态")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public CDState CDState { get; set; }
 
         [Display(Name = "备注")]
         [StringLength(500, ErrorMessage = "备注超过限制,500内")]
         public string CDDesc { get; set; }
-        [Display(Name ="状态")]
-        public CDState CDState { get; set; }
     }
 }
