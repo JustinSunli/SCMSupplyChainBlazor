@@ -10,7 +10,7 @@ namespace SCMSupplyChain.Model
         [Display(Name = "采购单号")]
         [Required(ErrorMessage = "{0}不能为空")]
         [StringLength(100, ErrorMessage = "{0}超过限制100")]
-        public string StockID { get; set; }
+        public string StockID { get; set; } = "PO" + DateTime.Now.ToString("yyyyMMddhhmmss");
 
         [Display(Name = "供货商")]
         [Required(ErrorMessage = "{0}不能为空")]

@@ -1,5 +1,5 @@
 ﻿window.onload = function () {
-    document.getElementById("datetime").outerHTML = '<canvas id="canvas"></canvas>';
+    document.getElementById("datetime1").innerHTML = '<canvas id="canvas"></canvas>';
     var WINDOW_WIDTH = 920;
     var WINDOW_HEIGHT = 400;
     var RADIUS = 7; //球半径

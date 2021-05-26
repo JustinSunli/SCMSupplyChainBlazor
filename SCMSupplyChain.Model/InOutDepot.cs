@@ -10,7 +10,7 @@ namespace SCMSupplyChain.Model
         [Display(Name = "出库记录号")]
         [Required(ErrorMessage = "{0}不能为空")]
         [StringLength(100, ErrorMessage = "{0}超最长限制,100内")]
-        public string IODID { get; set; }
+        public string IODID { get; set; } = "OR" + DateTime.Now.ToString("yyyyMMddhhmmss");
 
         [Display(Name = "出库类型")]
         public IODType IODType { get; set; }

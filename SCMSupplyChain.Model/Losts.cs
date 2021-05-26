@@ -10,7 +10,7 @@ namespace SCMSupplyChain.Model
         [Display(Name = "报损单号")]
         [Required(ErrorMessage = "{0}不能为空")]
         [StringLength(200, ErrorMessage = "{0}超过最长限制,200内")]
-        public string LostID { get; set; }
+        public string LostID { get; set; } = "LR" + DateTime.Now.ToString("yyyyMMddhhmmss");
 
         [Display(Name = "仓库")]
         [Required(ErrorMessage = "{0}不能为空")]

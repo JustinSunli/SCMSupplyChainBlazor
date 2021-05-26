@@ -16,7 +16,7 @@ namespace SCMSupplyChain.Test
     [TestClass] 
     public class DepotsApiTest
     {
-        private DepotsController _controller; 3
+        private DepotsController _controller; 
 
         private string _seed;
 

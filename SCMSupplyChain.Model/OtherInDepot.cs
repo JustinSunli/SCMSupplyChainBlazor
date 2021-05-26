@@ -11,7 +11,7 @@ namespace SCMSupplyChain.Model
         [Display(Name = "其它入库单号")]
         [Required(ErrorMessage = "{0}不能为空")]
         [StringLength(200, ErrorMessage = "{0}超过限制,200内")]
-        public string OIDID { get; set; }
+        public string OIDID { get; set; } = "OD" + DateTime.Now.ToString("yyyyMMddhhmmss");
 
         [Display(Name = "仓库")]
         [Required(ErrorMessage = "{0}不能为空")]

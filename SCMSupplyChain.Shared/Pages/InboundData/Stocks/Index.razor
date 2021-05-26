@@ -2,7 +2,6 @@
 @using SCMSupplyChain.ViewModel.InboundData.StocksVMs;
 @inherits BasePage
 @attribute [ActionDescription("采购订单", "SCMSupplyChain.Controllers,Stocks")]
-
 <WTSearchPanel OnSearch="@DoSearch">
     <ValidateForm Model="@SearchModel">
         <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Inline">
@@ -11,6 +10,7 @@
             <Select @bind-Value="@SearchModel.ProductLendID" Items="@AllProductLends" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
             <WTDateRange @bind-Value="@SearchModel.StockInDate"  />
             <Select @bind-Value="@SearchModel.StockState"  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+        
         </Row>
     </ValidateForm>
 </WTSearchPanel>

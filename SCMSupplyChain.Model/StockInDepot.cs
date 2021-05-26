@@ -10,7 +10,7 @@ namespace SCMSupplyChain.Model
         [Display(Name = "采购入库单号")]
         [Required(ErrorMessage = "{0}不能为空")]
         [StringLength(200, ErrorMessage = "{0}超过最长限制,200内")]
-        public string SIDID { get; set; }
+        public string SIDID { get; set; } = "PS" + DateTime.Now.ToString("yyyyMMddhhmmss");
 
         [Display(Name = "供货商")]
         [Required(ErrorMessage = "{0}不能为空")]

@@ -7,10 +7,10 @@ namespace SCMSupplyChain.Model
     [Display(Name = "报溢单")]
     public class PayOffs: PersistPoco
     {
-        [Display(Name ="报溢单号")]
-        [Required(ErrorMessage="{0}不能为空")]
-        [StringLength(200,ErrorMessage= "{0}超过最长限制,200内")]
-        public string POID { get; set; }
+        [Display(Name = "报溢单号")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        [StringLength(200, ErrorMessage = "{0}超过最长限制,200内")]
+        public string POID { get; set; } = "OR" + DateTime.Now.ToString("yyyyMMddhhmmss");
 
         [Display(Name ="仓库")]
         [Required(ErrorMessage = "{0}不能为空")]
