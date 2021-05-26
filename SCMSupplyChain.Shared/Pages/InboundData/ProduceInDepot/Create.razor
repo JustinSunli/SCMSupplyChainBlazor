@@ -7,6 +7,7 @@
 
             <BootstrapInput @bind-Value="@Model.Entity.PIDID"  />
             <Select @bind-Value="@Model.Entity.DepotsID" Items="@AllDepotss" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <Select @bind-Value="@Model.Entity.PIDState"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
             <BootstrapInput @bind-Value="@Model.Entity.PDIDesc"  />
     </Row>
     <div class="modal-footer table-modal-footer">

@@ -16,6 +16,8 @@ namespace SCMSupplyChain.ViewModel.InboundData.ProduceInDepotVMs
         public String PIDID { get; set; }
         [Display(Name = "仓库")]
         public Guid? DepotsID { get; set; }
+        [Display(Name = "状态")]
+        public PIDState? PIDState { get; set; }
 
         protected override void InitVM()
         {
