@@ -19,7 +19,6 @@ namespace SCMSupplyChain.ViewModel.InboundData.ProduceInDepotVMs
             return new List<GridColumn<ProduceInDepot_View>>{
                 this.MakeGridHeader(x => x.PIDID),
                 this.MakeGridHeader(x => x.DepotName_view),
-                this.MakeGridHeader(x => x.PIDState),
                 this.MakeGridHeader(x => x.PDIDesc),
                 this.MakeGridHeaderAction(width: 200)
             };
@@ -30,13 +29,11 @@ namespace SCMSupplyChain.ViewModel.InboundData.ProduceInDepotVMs
             var query = DC.Set<ProduceInDepot>()
                 .CheckContain(Searcher.PIDID, x=>x.PIDID)
                 .CheckEqual(Searcher.DepotsID, x=>x.DepotsID)
-                .CheckEqual(Searcher.PIDState, x=>x.PIDState)
                 .Select(x => new ProduceInDepot_View
                 {
 				    ID = x.ID,
                     PIDID = x.PIDID,
                     DepotName_view = x.Depots.DepotName,
-                    PIDState = x.PIDState,
                     PDIDesc = x.PDIDesc,
                 })
                 .OrderBy(x => x.ID);

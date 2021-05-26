@@ -38,10 +38,9 @@ namespace SCMSupplyChain.Test
             ProduceInDepotVM vm = _controller.Wtm.CreateVM<ProduceInDepotVM>();
             ProduceInDepot v = new ProduceInDepot();
             
-            v.PIDID = "6fHSzIjA";
+            v.PIDID = "aFNF";
             v.DepotsID = AddDepots();
-            v.PIDState = SCMSupplyChain.Model.PIDState.未定义1;
-            v.PDIDesc = "KQOGlnR0";
+            v.PDIDesc = "jrZrcN";
             vm.Entity = v;
             var rv = _controller.Add(vm);
             Assert.IsInstanceOfType(rv, typeof(OkObjectResult));
@@ -50,9 +49,8 @@ namespace SCMSupplyChain.Test
             {
                 var data = context.Set<ProduceInDepot>().Find(v.ID);
                 
-                Assert.AreEqual(data.PIDID, "6fHSzIjA");
-                Assert.AreEqual(data.PIDState, SCMSupplyChain.Model.PIDState.未定义1);
-                Assert.AreEqual(data.PDIDesc, "KQOGlnR0");
+                Assert.AreEqual(data.PIDID, "aFNF");
+                Assert.AreEqual(data.PDIDesc, "jrZrcN");
                 Assert.AreEqual(data.CreateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.CreateTime.Value).Seconds < 10);
             }
@@ -65,10 +63,9 @@ namespace SCMSupplyChain.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
        			
-                v.PIDID = "6fHSzIjA";
+                v.PIDID = "aFNF";
                 v.DepotsID = AddDepots();
-                v.PIDState = SCMSupplyChain.Model.PIDState.未定义1;
-                v.PDIDesc = "KQOGlnR0";
+                v.PDIDesc = "jrZrcN";
                 context.Set<ProduceInDepot>().Add(v);
                 context.SaveChanges();
             }
@@ -78,15 +75,13 @@ namespace SCMSupplyChain.Test
             v = new ProduceInDepot();
             v.ID = oldID;
        		
-            v.PIDID = "LPTRCp";
-            v.PIDState = SCMSupplyChain.Model.PIDState.未定义3;
-            v.PDIDesc = "PF6Ie2";
+            v.PIDID = "f3Ukgjgz4";
+            v.PDIDesc = "34Z";
             vm.Entity = v;
             vm.FC = new Dictionary<string, object>();
 			
             vm.FC.Add("Entity.PIDID", "");
             vm.FC.Add("Entity.DepotsID", "");
-            vm.FC.Add("Entity.PIDState", "");
             vm.FC.Add("Entity.PDIDesc", "");
             var rv = _controller.Edit(vm);
             Assert.IsInstanceOfType(rv, typeof(OkObjectResult));
@@ -95,9 +90,8 @@ namespace SCMSupplyChain.Test
             {
                 var data = context.Set<ProduceInDepot>().Find(v.ID);
  				
-                Assert.AreEqual(data.PIDID, "LPTRCp");
-                Assert.AreEqual(data.PIDState, SCMSupplyChain.Model.PIDState.未定义3);
-                Assert.AreEqual(data.PDIDesc, "PF6Ie2");
+                Assert.AreEqual(data.PIDID, "f3Ukgjgz4");
+                Assert.AreEqual(data.PDIDesc, "34Z");
                 Assert.AreEqual(data.UpdateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.UpdateTime.Value).Seconds < 10);
             }
@@ -111,10 +105,9 @@ namespace SCMSupplyChain.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
         		
-                v.PIDID = "6fHSzIjA";
+                v.PIDID = "aFNF";
                 v.DepotsID = AddDepots();
-                v.PIDState = SCMSupplyChain.Model.PIDState.未定义1;
-                v.PDIDesc = "KQOGlnR0";
+                v.PDIDesc = "jrZrcN";
                 context.Set<ProduceInDepot>().Add(v);
                 context.SaveChanges();
             }
@@ -130,14 +123,12 @@ namespace SCMSupplyChain.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 				
-                v1.PIDID = "6fHSzIjA";
+                v1.PIDID = "aFNF";
                 v1.DepotsID = AddDepots();
-                v1.PIDState = SCMSupplyChain.Model.PIDState.未定义1;
-                v1.PDIDesc = "KQOGlnR0";
-                v2.PIDID = "LPTRCp";
+                v1.PDIDesc = "jrZrcN";
+                v2.PIDID = "f3Ukgjgz4";
                 v2.DepotsID = v1.DepotsID; 
-                v2.PIDState = SCMSupplyChain.Model.PIDState.未定义3;
-                v2.PDIDesc = "PF6Ie2";
+                v2.PDIDesc = "34Z";
                 context.Set<ProduceInDepot>().Add(v1);
                 context.Set<ProduceInDepot>().Add(v2);
                 context.SaveChanges();
@@ -166,11 +157,11 @@ namespace SCMSupplyChain.Test
             {
                 try{
 
-                v.DepotName = "MjARZNj";
-                v.DepotMan = "3U0v";
-                v.DepotTelephone = "JL9";
-                v.DepotAddress = "Aw0a";
-                v.DepotDesc = "rVUBM";
+                v.DepotName = "YgspAGX";
+                v.DepotMan = "nn5jbz";
+                v.DepotTelephone = "ZQYGjNb";
+                v.DepotAddress = "XuX";
+                v.DepotDesc = "Wd5";
                 context.Set<Depots>().Add(v);
                 context.SaveChanges();
                 }

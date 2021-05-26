@@ -16,8 +16,6 @@ namespace SCMSupplyChain.ViewModel.InboundData.ProduceInDepotVMs
         public ExcelPropety PIDID_Excel = ExcelPropety.CreateProperty<ProduceInDepot>(x => x.PIDID);
         [Display(Name = "仓库")]
         public ExcelPropety Depots_Excel = ExcelPropety.CreateProperty<ProduceInDepot>(x => x.DepotsID);
-        [Display(Name = "状态")]
-        public ExcelPropety PIDState_Excel = ExcelPropety.CreateProperty<ProduceInDepot>(x => x.PIDState);
         [Display(Name = "备注")]
         public ExcelPropety PDIDesc_Excel = ExcelPropety.CreateProperty<ProduceInDepot>(x => x.PDIDesc);
 

@@ -9,7 +9,6 @@
 
             <BootstrapInput @bind-Value="@SearchModel.PIDID"  />
             <Select @bind-Value="@SearchModel.DepotsID" Items="@AllDepotss" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
-            <Select @bind-Value="@SearchModel.PIDState"  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
         </Row>
     </ValidateForm>
 </WTSearchPanel>
@@ -22,7 +21,6 @@
 
         <TableColumn @bind-Field="@context.PIDID"  />
         <TableColumn @bind-Field="@context.DepotName_view"  />
-        <TableColumn @bind-Field="@context.PIDState"  />
         <TableColumn @bind-Field="@context.PDIDesc"  />
     </TableColumns>
     <TableToolbarTemplate>
