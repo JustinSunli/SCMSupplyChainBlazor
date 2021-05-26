@@ -22,7 +22,6 @@ namespace SCMSupplyChain.Model
         public FrameworkUser FrameworkUser { get; set; }
 
         [Display(Name = "状态")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public CDState CDState { get; set; }
 
         [Display(Name = "备注")]

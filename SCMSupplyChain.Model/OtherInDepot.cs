@@ -9,13 +9,16 @@ namespace SCMSupplyChain.Model
     public class OtherInDepot: BasePoco
     {
         [Display(Name = "其它入库单号")]
-        [Required(ErrorMessage = "其它入库单号不能为空")]
-        [StringLength(200, ErrorMessage = "其它入库单号超过限制,200内")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        [StringLength(200, ErrorMessage = "{0}超过限制,200内")]
         public string OIDID { get; set; }
 
         [Display(Name = "仓库")]
-        public Guid? DepotsID { get; set; }
+        [Required(ErrorMessage = "{0}不能为空")]
+        public Guid DepotsID { get; set; }
+
         [Display(Name = "仓库")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public Depots Depots { get; set; }
 
         [Display(Name ="审核状态")]
