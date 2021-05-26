@@ -23,25 +23,19 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
                 this.MakeGridHeader(x => x.ProMin),
                 this.MakeGridHeader(x => x.ProdName),
                 this.MakeGridHeader(x => x.ProWorkShop),
-                this.MakeGridHeader(x => x.PhotoId).SetFormat(PhotoIdFormat),
                 this.MakeGridHeader(x => x.ProInPrice),
                 this.MakeGridHeader(x => x.ProPrice),
                 this.MakeGridHeaderAction(width: 200)
             };
         }
-        private List<ColumnFormatInfo> PhotoIdFormat(Products_View entity, object val)
-        {
-            return new List<ColumnFormatInfo>
-            {
-                ColumnFormatInfo.MakeDownloadButton(ButtonTypesEnum.Button,entity.PhotoId),
-                ColumnFormatInfo.MakeViewButton(ButtonTypesEnum.Button,entity.PhotoId,640,480),
-            };
-        }
-
 
         public override IOrderedQueryable<Products_View> GetSearchQuery()
         {
             var query = DC.Set<Products>()
+                .CheckEqual(Searcher.ProductUnitID, x=>x.ProductUnitID)
+                .CheckEqual(Searcher.ProductTypesID, x=>x.ProductTypesID)
+                .CheckContain(Searcher.ProdName, x=>x.ProdName)
+                .CheckContain(Searcher.ProWorkShop, x=>x.ProWorkShop)
                 .Select(x => new Products_View
                 {
 				    ID = x.ID,
@@ -51,7 +45,6 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
                     ProMin = x.ProMin,
                     ProdName = x.ProdName,
                     ProWorkShop = x.ProWorkShop,
-                    PhotoId = x.PhotoId,
                     ProInPrice = x.ProInPrice,
                     ProPrice = x.ProPrice,
                 })
@@ -62,7 +55,7 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
     }
 
     public class Products_View : Products{
-        [Display(Name = "名称")]
+        [Display(Name = "单位名称")]
         public String PUName_view { get; set; }
         [Display(Name = "名称")]
         public String PTName_view { get; set; }

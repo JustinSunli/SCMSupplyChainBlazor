@@ -28,8 +28,6 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
         public ExcelPropety ProInPrice_Excel = ExcelPropety.CreateProperty<Products>(x => x.ProInPrice);
         [Display(Name = "售价")]
         public ExcelPropety ProPrice_Excel = ExcelPropety.CreateProperty<Products>(x => x.ProPrice);
-        [Display(Name = "备注")]
-        public ExcelPropety ProDesc_Excel = ExcelPropety.CreateProperty<Products>(x => x.ProDesc);
 
 	    protected override void InitVM()
         {

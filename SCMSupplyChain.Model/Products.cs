@@ -9,18 +9,16 @@ namespace SCMSupplyChain.Model
     {
         [Display(Name = "商品规格")]
         [Required(ErrorMessage = "{0}不能为空")]
-        public Guid ProductUnitID { get; set; }
+        public Guid? ProductUnitID { get; set; }
 
         [Display(Name = "商品规格")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public ProductUnit ProductUnit { get; set; }
 
         [Display(Name = "商品类别")]
         [Required(ErrorMessage = "{0}不能为空")]
-        public Guid ProductTypesID { get; set; }
+        public Guid? ProductTypesID { get; set; }
 
         [Display(Name = "商品类别")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public ProductTypes ProductTypes { get; set; }
 
         [Display(Name = "库存上限")]

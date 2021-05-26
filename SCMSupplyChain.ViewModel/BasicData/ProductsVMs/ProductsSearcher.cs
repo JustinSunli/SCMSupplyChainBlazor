@@ -12,6 +12,14 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
 {
     public partial class ProductsSearcher : BaseSearcher
     {
+        [Display(Name = "商品规格")]
+        public Guid? ProductUnitID { get; set; }
+        [Display(Name = "商品类别")]
+        public Guid? ProductTypesID { get; set; }
+        [Display(Name = "商品名称")]
+        public String ProdName { get; set; }
+        [Display(Name = "生产厂家")]
+        public String ProWorkShop { get; set; }
 
         protected override void InitVM()
         {

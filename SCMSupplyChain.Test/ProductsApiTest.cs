@@ -40,14 +40,14 @@ namespace SCMSupplyChain.Test
             
             v.ProductUnitID = AddProductUnit();
             v.ProductTypesID = AddProductTypes();
-            v.ProMax = 53;
-            v.ProMin = 2;
-            v.ProdName = "gbSf";
-            v.ProWorkShop = "9GlXezWvb";
+            v.ProMax = 57;
+            v.ProMin = 92;
+            v.ProdName = "db4u";
+            v.ProWorkShop = "o6d";
             v.PhotoId = AddFileAttachment();
-            v.ProInPrice = 73;
-            v.ProPrice = 45;
-            v.ProDesc = "w3tsLd";
+            v.ProInPrice = 64;
+            v.ProPrice = 79;
+            v.ProDesc = "ven0";
             vm.Entity = v;
             var rv = _controller.Add(vm);
             Assert.IsInstanceOfType(rv, typeof(OkObjectResult));
@@ -56,13 +56,13 @@ namespace SCMSupplyChain.Test
             {
                 var data = context.Set<Products>().Find(v.ID);
                 
-                Assert.AreEqual(data.ProMax, 53);
-                Assert.AreEqual(data.ProMin, 2);
-                Assert.AreEqual(data.ProdName, "gbSf");
-                Assert.AreEqual(data.ProWorkShop, "9GlXezWvb");
-                Assert.AreEqual(data.ProInPrice, 73);
-                Assert.AreEqual(data.ProPrice, 45);
-                Assert.AreEqual(data.ProDesc, "w3tsLd");
+                Assert.AreEqual(data.ProMax, 57);
+                Assert.AreEqual(data.ProMin, 92);
+                Assert.AreEqual(data.ProdName, "db4u");
+                Assert.AreEqual(data.ProWorkShop, "o6d");
+                Assert.AreEqual(data.ProInPrice, 64);
+                Assert.AreEqual(data.ProPrice, 79);
+                Assert.AreEqual(data.ProDesc, "ven0");
                 Assert.AreEqual(data.CreateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.CreateTime.Value).Seconds < 10);
             }
@@ -77,14 +77,14 @@ namespace SCMSupplyChain.Test
        			
                 v.ProductUnitID = AddProductUnit();
                 v.ProductTypesID = AddProductTypes();
-                v.ProMax = 53;
-                v.ProMin = 2;
-                v.ProdName = "gbSf";
-                v.ProWorkShop = "9GlXezWvb";
+                v.ProMax = 57;
+                v.ProMin = 92;
+                v.ProdName = "db4u";
+                v.ProWorkShop = "o6d";
                 v.PhotoId = AddFileAttachment();
-                v.ProInPrice = 73;
-                v.ProPrice = 45;
-                v.ProDesc = "w3tsLd";
+                v.ProInPrice = 64;
+                v.ProPrice = 79;
+                v.ProDesc = "ven0";
                 context.Set<Products>().Add(v);
                 context.SaveChanges();
             }
@@ -94,13 +94,13 @@ namespace SCMSupplyChain.Test
             v = new Products();
             v.ID = oldID;
        		
-            v.ProMax = 59;
-            v.ProMin = 88;
-            v.ProdName = "u391ba";
-            v.ProWorkShop = "58mvDNZJ";
-            v.ProInPrice = 43;
-            v.ProPrice = 78;
-            v.ProDesc = "1L0sOstS";
+            v.ProMax = 23;
+            v.ProMin = 11;
+            v.ProdName = "tnxR";
+            v.ProWorkShop = "WdlG6jf";
+            v.ProInPrice = 94;
+            v.ProPrice = 95;
+            v.ProDesc = "0hTsBPW";
             vm.Entity = v;
             vm.FC = new Dictionary<string, object>();
 			
@@ -121,13 +121,13 @@ namespace SCMSupplyChain.Test
             {
                 var data = context.Set<Products>().Find(v.ID);
  				
-                Assert.AreEqual(data.ProMax, 59);
-                Assert.AreEqual(data.ProMin, 88);
-                Assert.AreEqual(data.ProdName, "u391ba");
-                Assert.AreEqual(data.ProWorkShop, "58mvDNZJ");
-                Assert.AreEqual(data.ProInPrice, 43);
-                Assert.AreEqual(data.ProPrice, 78);
-                Assert.AreEqual(data.ProDesc, "1L0sOstS");
+                Assert.AreEqual(data.ProMax, 23);
+                Assert.AreEqual(data.ProMin, 11);
+                Assert.AreEqual(data.ProdName, "tnxR");
+                Assert.AreEqual(data.ProWorkShop, "WdlG6jf");
+                Assert.AreEqual(data.ProInPrice, 94);
+                Assert.AreEqual(data.ProPrice, 95);
+                Assert.AreEqual(data.ProDesc, "0hTsBPW");
                 Assert.AreEqual(data.UpdateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.UpdateTime.Value).Seconds < 10);
             }
@@ -143,14 +143,14 @@ namespace SCMSupplyChain.Test
         		
                 v.ProductUnitID = AddProductUnit();
                 v.ProductTypesID = AddProductTypes();
-                v.ProMax = 53;
-                v.ProMin = 2;
-                v.ProdName = "gbSf";
-                v.ProWorkShop = "9GlXezWvb";
+                v.ProMax = 57;
+                v.ProMin = 92;
+                v.ProdName = "db4u";
+                v.ProWorkShop = "o6d";
                 v.PhotoId = AddFileAttachment();
-                v.ProInPrice = 73;
-                v.ProPrice = 45;
-                v.ProDesc = "w3tsLd";
+                v.ProInPrice = 64;
+                v.ProPrice = 79;
+                v.ProDesc = "ven0";
                 context.Set<Products>().Add(v);
                 context.SaveChanges();
             }
@@ -168,24 +168,24 @@ namespace SCMSupplyChain.Test
 				
                 v1.ProductUnitID = AddProductUnit();
                 v1.ProductTypesID = AddProductTypes();
-                v1.ProMax = 53;
-                v1.ProMin = 2;
-                v1.ProdName = "gbSf";
-                v1.ProWorkShop = "9GlXezWvb";
+                v1.ProMax = 57;
+                v1.ProMin = 92;
+                v1.ProdName = "db4u";
+                v1.ProWorkShop = "o6d";
                 v1.PhotoId = AddFileAttachment();
-                v1.ProInPrice = 73;
-                v1.ProPrice = 45;
-                v1.ProDesc = "w3tsLd";
+                v1.ProInPrice = 64;
+                v1.ProPrice = 79;
+                v1.ProDesc = "ven0";
                 v2.ProductUnitID = v1.ProductUnitID; 
                 v2.ProductTypesID = v1.ProductTypesID; 
-                v2.ProMax = 59;
-                v2.ProMin = 88;
-                v2.ProdName = "u391ba";
-                v2.ProWorkShop = "58mvDNZJ";
+                v2.ProMax = 23;
+                v2.ProMin = 11;
+                v2.ProdName = "tnxR";
+                v2.ProWorkShop = "WdlG6jf";
                 v2.PhotoId = v1.PhotoId; 
-                v2.ProInPrice = 43;
-                v2.ProPrice = 78;
-                v2.ProDesc = "1L0sOstS";
+                v2.ProInPrice = 94;
+                v2.ProPrice = 95;
+                v2.ProDesc = "0hTsBPW";
                 context.Set<Products>().Add(v1);
                 context.Set<Products>().Add(v2);
                 context.SaveChanges();
@@ -214,7 +214,7 @@ namespace SCMSupplyChain.Test
             {
                 try{
 
-                v.PUName = "CoIHoXae3";
+                v.PUName = "AtT6f0";
                 context.Set<ProductUnit>().Add(v);
                 context.SaveChanges();
                 }
@@ -230,8 +230,8 @@ namespace SCMSupplyChain.Test
             {
                 try{
 
-                v.PTName = "G0Cf";
-                v.PTDes = "xz69W6sPK";
+                v.PTName = "UiEG2";
+                v.PTDes = "1RxjQ6";
                 context.Set<ProductTypes>().Add(v);
                 context.SaveChanges();
                 }
@@ -247,13 +247,13 @@ namespace SCMSupplyChain.Test
             {
                 try{
 
-                v.FileName = "CrddPpoj";
-                v.FileExt = "aGIh";
-                v.Path = "XoHo";
-                v.Length = 93;
-                v.SaveMode = "xDs2nQuoc";
-                v.ExtraInfo = "lTsZZJcdZ";
-                v.HandlerInfo = "fIGZbFwm";
+                v.FileName = "WBq";
+                v.FileExt = "6smt78ggf";
+                v.Path = "jlg";
+                v.Length = 12;
+                v.SaveMode = "ndkzLQzl";
+                v.ExtraInfo = "VuavBb8l0";
+                v.HandlerInfo = "bJr";
                 context.Set<FileAttachment>().Add(v);
                 context.SaveChanges();
                 }

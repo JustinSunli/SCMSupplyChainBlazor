@@ -7,6 +7,10 @@
     <ValidateForm Model="@SearchModel">
         <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Inline">
 
+            <Select @bind-Value="@SearchModel.ProductUnitID" Items="@AllProductUnits" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <Select @bind-Value="@SearchModel.ProductTypesID" Items="@AllProductTypess" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <BootstrapInput @bind-Value="@SearchModel.ProdName"  />
+            <BootstrapInput @bind-Value="@SearchModel.ProWorkShop"  />
         </Row>
     </ValidateForm>
 </WTSearchPanel>
@@ -23,12 +27,6 @@
         <TableColumn @bind-Field="@context.ProMin"  />
         <TableColumn @bind-Field="@context.ProdName"  />
         <TableColumn @bind-Field="@context.ProWorkShop"  />
-        <TableColumn @bind-Field="@context.PhotoId"  >
-
-            <Template Context="data">
-                <Avatar @key="data.Value" Size="Size.ExtraSmall" GetUrlAsync="()=>WtmBlazor.GetBase64Image(data.Value.ToString(),150,150)" />
-            </Template>
-        </TableColumn>
         <TableColumn @bind-Field="@context.ProInPrice"  />
         <TableColumn @bind-Field="@context.ProPrice"  />
     </TableColumns>
@@ -78,9 +76,17 @@
     private ProductsSearcher SearchModel = new ProductsSearcher();
     private Table<Products_View> dataTable;
 
+    private List<SelectedItem> AllProductUnits = new List<SelectedItem>();
+
+    private List<SelectedItem> AllProductTypess = new List<SelectedItem>();
+
 
     protected override async Task OnInitializedAsync()
     {
+
+        AllProductUnits = await WtmBlazor.Api.CallItemsApi("/api/Products/GetProductUnits", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        AllProductTypess = await WtmBlazor.Api.CallItemsApi("/api/Products/GetProductTypess", placeholder: WtmBlazor.Localizer["Sys.All"]);
 
         await base.OnInitializedAsync();
     }
