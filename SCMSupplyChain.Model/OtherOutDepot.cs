@@ -10,7 +10,7 @@ namespace SCMSupplyChain.Model
 
         [Display(Name = "其他出库单号")]
         [Required(ErrorMessage = "{0}不能为空")]
-        [StringLength(200,ErrorMessage = "其他出库单号超过限制,200内")]
+        [StringLength(200,ErrorMessage = "{0}超过限制,200内")]
         public string OODID { get; set; }
 
         [Display(Name ="状态")]
@@ -20,8 +20,8 @@ namespace SCMSupplyChain.Model
         [Display(Name = "仓库")]
         [Required(ErrorMessage = "{0}不能为空")]
         public Guid? DepotsID { get; set; }
+        
         [Display(Name = "仓库")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public Depots Depots { get; set; }
 
         [Display(Name = "备注")]

@@ -38,10 +38,10 @@ namespace SCMSupplyChain.Test
             StocksVM vm = _controller.Wtm.CreateVM<StocksVM>();
             Stocks v = new Stocks();
             
-            v.StockID = "3wO";
+            v.StockID = "zMLdzudA";
             v.ProductLendID = AddProductLend();
-            v.StockState = SCMSupplyChain.Model.StockState.未定义1;
-            v.StockDesc = "xDxLcNW";
+            v.StockState = SCMSupplyChain.Model.StockState.未定义3;
+            v.StockDesc = "NQ7jFRM5";
             vm.Entity = v;
             var rv = _controller.Add(vm);
             Assert.IsInstanceOfType(rv, typeof(OkObjectResult));
@@ -50,9 +50,9 @@ namespace SCMSupplyChain.Test
             {
                 var data = context.Set<Stocks>().Find(v.ID);
                 
-                Assert.AreEqual(data.StockID, "3wO");
-                Assert.AreEqual(data.StockState, SCMSupplyChain.Model.StockState.未定义1);
-                Assert.AreEqual(data.StockDesc, "xDxLcNW");
+                Assert.AreEqual(data.StockID, "zMLdzudA");
+                Assert.AreEqual(data.StockState, SCMSupplyChain.Model.StockState.未定义3);
+                Assert.AreEqual(data.StockDesc, "NQ7jFRM5");
                 Assert.AreEqual(data.CreateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.CreateTime.Value).Seconds < 10);
             }
@@ -65,10 +65,10 @@ namespace SCMSupplyChain.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
        			
-                v.StockID = "3wO";
+                v.StockID = "zMLdzudA";
                 v.ProductLendID = AddProductLend();
-                v.StockState = SCMSupplyChain.Model.StockState.未定义1;
-                v.StockDesc = "xDxLcNW";
+                v.StockState = SCMSupplyChain.Model.StockState.未定义3;
+                v.StockDesc = "NQ7jFRM5";
                 context.Set<Stocks>().Add(v);
                 context.SaveChanges();
             }
@@ -78,9 +78,9 @@ namespace SCMSupplyChain.Test
             v = new Stocks();
             v.ID = oldID;
        		
-            v.StockID = "ky2CEt63";
-            v.StockState = SCMSupplyChain.Model.StockState.未定义1;
-            v.StockDesc = "ESn";
+            v.StockID = "YWm";
+            v.StockState = SCMSupplyChain.Model.StockState.未定义2;
+            v.StockDesc = "uxh0Fw";
             vm.Entity = v;
             vm.FC = new Dictionary<string, object>();
 			
@@ -95,9 +95,9 @@ namespace SCMSupplyChain.Test
             {
                 var data = context.Set<Stocks>().Find(v.ID);
  				
-                Assert.AreEqual(data.StockID, "ky2CEt63");
-                Assert.AreEqual(data.StockState, SCMSupplyChain.Model.StockState.未定义1);
-                Assert.AreEqual(data.StockDesc, "ESn");
+                Assert.AreEqual(data.StockID, "YWm");
+                Assert.AreEqual(data.StockState, SCMSupplyChain.Model.StockState.未定义2);
+                Assert.AreEqual(data.StockDesc, "uxh0Fw");
                 Assert.AreEqual(data.UpdateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.UpdateTime.Value).Seconds < 10);
             }
@@ -111,10 +111,10 @@ namespace SCMSupplyChain.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
         		
-                v.StockID = "3wO";
+                v.StockID = "zMLdzudA";
                 v.ProductLendID = AddProductLend();
-                v.StockState = SCMSupplyChain.Model.StockState.未定义1;
-                v.StockDesc = "xDxLcNW";
+                v.StockState = SCMSupplyChain.Model.StockState.未定义3;
+                v.StockDesc = "NQ7jFRM5";
                 context.Set<Stocks>().Add(v);
                 context.SaveChanges();
             }
@@ -130,14 +130,14 @@ namespace SCMSupplyChain.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 				
-                v1.StockID = "3wO";
+                v1.StockID = "zMLdzudA";
                 v1.ProductLendID = AddProductLend();
-                v1.StockState = SCMSupplyChain.Model.StockState.未定义1;
-                v1.StockDesc = "xDxLcNW";
-                v2.StockID = "ky2CEt63";
+                v1.StockState = SCMSupplyChain.Model.StockState.未定义3;
+                v1.StockDesc = "NQ7jFRM5";
+                v2.StockID = "YWm";
                 v2.ProductLendID = v1.ProductLendID; 
-                v2.StockState = SCMSupplyChain.Model.StockState.未定义1;
-                v2.StockDesc = "ESn";
+                v2.StockState = SCMSupplyChain.Model.StockState.未定义2;
+                v2.StockDesc = "uxh0Fw";
                 context.Set<Stocks>().Add(v1);
                 context.Set<Stocks>().Add(v2);
                 context.SaveChanges();
@@ -166,17 +166,17 @@ namespace SCMSupplyChain.Test
             {
                 try{
 
-                v.PPName = "2FJFfb";
-                v.PPCompany = "4Cam6hU";
-                v.PPMan = "feG";
-                v.PPTel = "tSH4xzZZ";
-                v.PPAddress = "hawr";
-                v.PPFax = "6BKFih1Rs";
-                v.Email = "0g5orPCJO";
-                v.PPUrl = "kCp4Vi4h2";
-                v.PPBank = "Rg6iZkJ1l";
-                v.PPGoods = "ZlPitI";
-                v.PPDesc = "rohFQ";
+                v.PPName = "OdIfUy";
+                v.PPCompany = "QyTP";
+                v.PPMan = "5yiMffBKn";
+                v.PPTel = "ktWi";
+                v.PPAddress = "MV58sLTIa";
+                v.PPFax = "6hWhT";
+                v.Email = "obLTExJb";
+                v.PPUrl = "E02";
+                v.PPBank = "oPtpfzd3k";
+                v.PPGoods = "z95D";
+                v.PPDesc = "SPX0v";
                 context.Set<ProductLend>().Add(v);
                 context.SaveChanges();
                 }

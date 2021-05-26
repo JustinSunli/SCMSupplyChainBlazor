@@ -8,10 +8,14 @@ namespace SCMSupplyChain.Model
     public class Stocks: PersistPoco
     {
         [Display(Name = "采购单号")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        [StringLength(100, ErrorMessage = "{0}超过限制100")]
         public string StockID { get; set; }
 
         [Display(Name = "供货商")]
-        public Guid? ProductLendID { get; set; }
+        [Required(ErrorMessage = "{0}不能为空")]
+        public Guid ProductLendID { get; set; }
+
         [Display(Name = "供货商")]
         public ProductLend ProductLend { get; set; }
 

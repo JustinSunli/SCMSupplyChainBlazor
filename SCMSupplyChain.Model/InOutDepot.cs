@@ -9,7 +9,7 @@ namespace SCMSupplyChain.Model
     {
         [Display(Name = "出库记录号")]
         [Required(ErrorMessage = "{0}不能为空")]
-        [StringLength(100, ErrorMessage = "出库记录号超最长限制,100内")]
+        [StringLength(100, ErrorMessage = "{0}超最长限制,100内")]
         public string IODID { get; set; }
 
         [Display(Name = "出库类型")]
@@ -17,9 +17,9 @@ namespace SCMSupplyChain.Model
 
         [Display(Name = "仓库")]
         [Required(ErrorMessage = "{0}不能为空")]
-        public Guid? DepotsID { get; set; }
+        public Guid DepotsID { get; set; }
+
         [Display(Name = "仓库")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public Depots Depots { get; set; }
 
 

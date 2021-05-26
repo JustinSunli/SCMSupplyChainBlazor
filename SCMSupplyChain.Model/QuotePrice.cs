@@ -9,12 +9,13 @@ namespace SCMSupplyChain.Model
     public class QuotePrice : BasePoco
     {
         [Display(Name = "报价单号")]
-        [Required(ErrorMessage = "报价单号不能为空")]
-        [StringLength(100, ErrorMessage = "报价单号超过限制100")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        [StringLength(100, ErrorMessage = "{0}超过限制100")]
         public string QPID { get; set; }
 
         [Display(Name = "客户名称")]
-        public Guid? CustomersID { get; set; }
+        [Required(ErrorMessage = "{0}不能为空")]
+        public Guid CustomersID { get; set; }
 
         [Display(Name = "客户名称")]
         public Customers Customers { get; set; }

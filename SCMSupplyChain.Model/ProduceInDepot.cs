@@ -8,12 +8,14 @@ namespace SCMSupplyChain.Model
     public class ProduceInDepot: PersistPoco
     {
         [Display(Name = "生产入库单号")]
-        [Required(ErrorMessage= "生产入库单号不能为空")]
-        [StringLength(200,ErrorMessage = "生产入库单号超过最长限制,200内")]
+        [Required(ErrorMessage= "{0}不能为空")]
+        [StringLength(200,ErrorMessage = "{0}超过最长限制,200内")]
         public string PIDID { get; set; }
 
         [Display(Name ="仓库")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public Guid? DepotsID { get; set; }
+
         [Display(Name = "仓库")]
         public Depots Depots { get; set; }
 

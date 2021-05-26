@@ -25,7 +25,6 @@
         <TableColumn @bind-Field="@context.PPName_view"  />
         <TableColumn @bind-Field="@context.StockInDate" FormatString="yyyy-MM-dd HH: mm: ss" />
         <TableColumn @bind-Field="@context.StockState"  />
-
     </TableColumns>
     <TableToolbarTemplate>
         @if (IsAccessable("/api/Stocks/add"))
