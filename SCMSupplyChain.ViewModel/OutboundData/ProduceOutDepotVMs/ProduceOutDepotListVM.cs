@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using SCMSupplyChain.Model;
 
 
-namespace SCMSupplyChain.ViewModel.InboundData.ProduceOutDepotVMs
+namespace SCMSupplyChain.ViewModel.OutboundData.ProduceOutDepotVMs
 {
     public partial class ProduceOutDepotListVM : BasePagedListVM<ProduceOutDepot_View, ProduceOutDepotSearcher>
     {

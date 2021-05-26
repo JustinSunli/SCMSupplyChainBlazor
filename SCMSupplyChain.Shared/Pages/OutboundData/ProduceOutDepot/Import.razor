@@ -1,5 +1,5 @@
-﻿@page "/InboundData/ProduceInDepot/Import"
-@using SCMSupplyChain.ViewModel.InboundData.ProduceInDepotVMs;
+﻿@page "/OutboundData/ProduceOutDepot/Import"
+@using SCMSupplyChain.ViewModel.OutboundData.ProduceOutDepotVMs;
 @inherits BasePage
 
     <ValidateForm @ref="vform" Model="@Model" OnValidSubmit="@Submit">
@@ -23,7 +23,7 @@
 
     @code {
 
-        private ProduceInDepotImportVM Model = new ProduceInDepotImportVM() { };
+        private ProduceOutDepotImportVM Model = new ProduceOutDepotImportVM() { };
         private ValidateForm vform { get; set; }
         private string ErrorRowStyle = "display:none";
         private string ErrorFileId;
@@ -35,12 +35,12 @@
 
         private  async Task DownloadTemplate()
         {
-            await Download("/api/ProduceInDepot/GetExcelTemplate", new { }, HttpMethodEnum.GET);
+            await Download("/api/ProduceOutDepot/GetExcelTemplate", new { }, HttpMethodEnum.GET);
         }
 
         private async Task Submit(EditContext context)
         {
-            await PostsForm(vform, "/api/ProduceInDepot/import",(s)=> WtmBlazor.Localizer["Sys.ImportSuccess",s],(err) => {
+            await PostsForm(vform, "/api/ProduceOutDepot/import",(s)=> WtmBlazor.Localizer["Sys.ImportSuccess",s],(err) => {
                 ErrorRowStyle = "display:visiable";
                 ErrorFileId = err.Form["Entity.ErrorFileId"];
             }) ;

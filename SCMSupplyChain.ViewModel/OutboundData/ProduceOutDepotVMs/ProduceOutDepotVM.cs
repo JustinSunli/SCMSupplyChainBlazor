@@ -8,7 +8,7 @@ using WalkingTec.Mvvm.Core.Extensions;
 using SCMSupplyChain.Model;
 
 
-namespace SCMSupplyChain.ViewModel.InboundData.ProduceOutDepotVMs
+namespace SCMSupplyChain.ViewModel.OutboundData.ProduceOutDepotVMs
 {
     public partial class ProduceOutDepotVM : BaseCRUDVM<ProduceOutDepot>
     {

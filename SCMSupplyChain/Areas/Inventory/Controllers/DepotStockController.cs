@@ -5,15 +5,15 @@ using System.Linq;
 using WalkingTec.Mvvm.Core;
 using WalkingTec.Mvvm.Core.Extensions;
 using WalkingTec.Mvvm.Mvc;
-using SCMSupplyChain.ViewModel.InboundData.DepotStockVMs;
+using SCMSupplyChain.ViewModel.Inventory.DepotStockVMs;
 using SCMSupplyChain.Model;
 
 
 namespace SCMSupplyChain.Controllers
 {
-    [Area("InboundData")]
+    [Area("Inventory")]
     [AuthorizeJwtWithCookie]
-    [ActionDescription("当前库存")]
+    [ActionDescription("库存")]
     [ApiController]
     [Route("api/DepotStock")]
 	public partial class DepotStockController : BaseApiController

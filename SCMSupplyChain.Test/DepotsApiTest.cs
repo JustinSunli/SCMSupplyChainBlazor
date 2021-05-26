@@ -13,10 +13,11 @@ using SCMSupplyChain.DataAccess;
 
 namespace SCMSupplyChain.Test
 {
-    [TestClass]
+    [TestClass] 
     public class DepotsApiTest
     {
-        private DepotsController _controller;
+        private DepotsController _controller; 3
+
         private string _seed;
 
         public DepotsApiTest()

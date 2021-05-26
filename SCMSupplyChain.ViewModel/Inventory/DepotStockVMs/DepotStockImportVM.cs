@@ -8,7 +8,7 @@ using WalkingTec.Mvvm.Core.Extensions;
 using SCMSupplyChain.Model;
 
 
-namespace SCMSupplyChain.ViewModel.InboundData.DepotStockVMs
+namespace SCMSupplyChain.ViewModel.Inventory.DepotStockVMs
 {
     public partial class DepotStockTemplateVM : BaseTemplateVM
     {

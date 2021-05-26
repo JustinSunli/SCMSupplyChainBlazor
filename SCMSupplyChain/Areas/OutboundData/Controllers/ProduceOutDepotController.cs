@@ -5,15 +5,15 @@ using System.Linq;
 using WalkingTec.Mvvm.Core;
 using WalkingTec.Mvvm.Core.Extensions;
 using WalkingTec.Mvvm.Mvc;
-using SCMSupplyChain.ViewModel.InboundData.ProduceOutDepotVMs;
+using SCMSupplyChain.ViewModel.OutboundData.ProduceOutDepotVMs;
 using SCMSupplyChain.Model;
 
 
 namespace SCMSupplyChain.Controllers
 {
-    [Area("InboundData")]
+    [Area("OutboundData")]
     [AuthorizeJwtWithCookie]
-    [ActionDescription("生产领料")]
+    [ActionDescription("生产领料单")]
     [ApiController]
     [Route("api/ProduceOutDepot")]
 	public partial class ProduceOutDepotController : BaseApiController

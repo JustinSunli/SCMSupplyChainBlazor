@@ -1,5 +1,5 @@
-﻿@page "/InboundData/ProduceOutDepot/Edit/{id}"
-@using SCMSupplyChain.ViewModel.InboundData.ProduceOutDepotVMs;
+﻿@page "/OutboundData/ProduceOutDepot/Create"
+@using SCMSupplyChain.ViewModel.OutboundData.ProduceOutDepotVMs;
 @inherits BasePage
 
 <ValidateForm @ref="vform" Model="@Model" OnValidSubmit="@Submit">
@@ -11,7 +11,7 @@
     </Row>
     <div class="modal-footer table-modal-footer">
         <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
-        <Button Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Edit"]" IsAsync="true" />
+        <Button Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Create"]" IsAsync="true" />
     </div>
 </ValidateForm>
 
@@ -19,8 +19,6 @@
 
     private ProduceOutDepotVM Model = new ProduceOutDepotVM();
     private ValidateForm vform { get; set; }
-    [Parameter]
-    public string id { get; set; }
 
     private List<SelectedItem> AllDepotss = new List<SelectedItem>();
 
@@ -30,14 +28,13 @@
 
         AllDepotss = await WtmBlazor.Api.CallItemsApi("/api/ProduceOutDepot/GetDepotss", placeholder: WtmBlazor.Localizer["Sys.PleaseSelect"]);
 
-        var rv = await WtmBlazor.Api.CallAPI<ProduceOutDepotVM>($"/api/ProduceOutDepot/{id}");
-        Model = rv.Data;
-         await base.OnInitializedAsync();
-   }
+        await base.OnInitializedAsync();
+    }
+
 
     private async Task Submit(EditContext context)
     {
-        await PostsForm(vform, $"/api/ProduceOutDepot/edit", (s) => "Sys.OprationSuccess", method: HttpMethodEnum.PUT);
+        await PostsForm(vform, "/api/ProduceOutDepot/add", (s) => "Sys.OprationSuccess");
     }
 
     public void OnClose()

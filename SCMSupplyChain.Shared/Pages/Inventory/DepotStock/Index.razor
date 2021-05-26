@@ -1,61 +1,63 @@
-﻿@page "/InboundData/ProduceInDepot"
-@using SCMSupplyChain.ViewModel.InboundData.ProduceInDepotVMs;
+﻿@page "/Inventory/DepotStock"
+@using SCMSupplyChain.ViewModel.Inventory.DepotStockVMs;
 @inherits BasePage
-@attribute [ActionDescription("生产入库", "SCMSupplyChain.Controllers,ProduceInDepot")]
+@attribute [ActionDescription("库存", "SCMSupplyChain.Controllers,DepotStock")]
 
 <WTSearchPanel OnSearch="@DoSearch">
     <ValidateForm Model="@SearchModel">
         <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Inline">
 
-            <BootstrapInput @bind-Value="@SearchModel.PIDID"  />
             <Select @bind-Value="@SearchModel.DepotsID" Items="@AllDepotss" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <Select @bind-Value="@SearchModel.ProductsID" Items="@AllProductss" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <BootstrapInputNumber @bind-Value="@SearchModel.DSAmount"  />
         </Row>
     </ValidateForm>
 </WTSearchPanel>
 
 
 
-<Table @ref="dataTable" TItem="ProduceInDepot_View" OnQueryAsync="OnSearch" IsPagination="true" IsStriped="true" IsBordered="true" ShowRefresh="false"
+<Table @ref="dataTable" TItem="DepotStock_View" OnQueryAsync="OnSearch" IsPagination="true" IsStriped="true" IsBordered="true" ShowRefresh="false"
        ShowToolbar="true" IsMultipleSelect="true" ShowExtendButtons="true" ShowDefaultButtons="false" style="margin-top:10px;">
     <TableColumns>
 
-        <TableColumn @bind-Field="@context.PIDID"  />
         <TableColumn @bind-Field="@context.DepotName_view"  />
-        <TableColumn @bind-Field="@context.PDIDesc"  />
+        <TableColumn @bind-Field="@context.ProdName_view"  />
+        <TableColumn @bind-Field="@context.DSAmount"  />
+        <TableColumn @bind-Field="@context.DSPrice"  />
     </TableColumns>
     <TableToolbarTemplate>
-        @if (IsAccessable("/api/ProduceInDepot/add"))
+        @if (IsAccessable("/api/DepotStock/add"))
         {
-            <TableToolbarButton TItem="ProduceInDepot_View" Color="Color.Primary" Icon="fa fa-fw fa-plus" Text="@WtmBlazor.Localizer["Sys.Create"]" OnClickCallback="OnCreateClick" />
+            <TableToolbarButton TItem="DepotStock_View" Color="Color.Primary" Icon="fa fa-fw fa-plus" Text="@WtmBlazor.Localizer["Sys.Create"]" OnClickCallback="OnCreateClick" />
         }
-        @if (IsAccessable("/api/ProduceInDepot/BatchDelete"))
+        @if (IsAccessable("/api/DepotStock/BatchDelete"))
         {
-            <TableToolbarPopconfirmButton TItem="ProduceInDepot_View" Color="Color.Primary"
+            <TableToolbarPopconfirmButton TItem="DepotStock_View" Color="Color.Primary"
                                           Icon="fa fa-fw fa-trash-o" Text="@WtmBlazor.Localizer["Sys.BatchDelete"]"
                                           OnConfirm="@OnBatchDeleteClick" Content="@WtmBlazor.Localizer["Sys.BatchDeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]"
                                           ConfirmButtonText="@WtmBlazor.Localizer["Sys.BatchDelete"]" ConfirmButtonColor="Color.Danger" />
         }
         
-        @if (IsAccessable("/api/ProduceInDepot/Import"))
+        @if (IsAccessable("/api/DepotStock/Import"))
         {
-            <TableToolbarButton TItem="ProduceInDepot_View" Color="Color.Primary" Icon="fa fa-fw fa-upload" Text="@WtmBlazor.Localizer["Sys.Import"]" OnClickCallback="@OnImportClick" />
+            <TableToolbarButton TItem="DepotStock_View" Color="Color.Primary" Icon="fa fa-fw fa-upload" Text="@WtmBlazor.Localizer["Sys.Import"]" OnClickCallback="@OnImportClick" />
         }
-        @if (IsAccessable("/api/ProduceInDepot/ExportExcel"))
+        @if (IsAccessable("/api/DepotStock/ExportExcel"))
         {
-            <TableToolbarButton TItem="ProduceInDepot_View" Color="Color.Primary" Icon="fa fa-fw fa-download" Text="@WtmBlazor.Localizer["Sys.Export"]" OnClickCallback="@OnExportClick" IsAsync="true" />
+            <TableToolbarButton TItem="DepotStock_View" Color="Color.Primary" Icon="fa fa-fw fa-download" Text="@WtmBlazor.Localizer["Sys.Export"]" OnClickCallback="@OnExportClick" IsAsync="true" />
         }
     </TableToolbarTemplate>
     <RowButtonTemplate>
         <div style="padding-right:10px;">
-            @if (IsAccessable("/api/ProduceInDepot/Edit"))
+            @if (IsAccessable("/api/DepotStock/Edit"))
             {
                 <TableCellButton Size="Size.ExtraSmall" Color="Color.Success" Icon="fa fa-edit" Text="@WtmBlazor.Localizer["Sys.Edit"]" OnClickCallback="() => OnEditClick(context)" />
             }
-            @if (IsAccessable("/api/ProduceInDepot/{id}"))
+            @if (IsAccessable("/api/DepotStock/{id}"))
             {
                 <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa fa-info" Text="@WtmBlazor.Localizer["Sys.Details"]" OnClickCallback="()=>OnDetailsClick(context)" />
             }
-            @if (IsAccessable("/api/ProduceInDepot/BatchDelete"))
+            @if (IsAccessable("/api/DepotStock/BatchDelete"))
             {
                 <PopConfirmButton Icon="fa fa-trash-o" Text="@WtmBlazor.Localizer["Sys.Delete"]" OnConfirm="() => OnDeleteClick(context)" Color="Color.Danger" Size="Size.ExtraSmall"
                                   Content="@WtmBlazor.Localizer["Sys.DeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]" ConfirmButtonText="@WtmBlazor.Localizer["Sys.Delete"]" ConfirmButtonColor="Color.Danger" />
@@ -66,23 +68,27 @@
 
 @code{
 
-    private ProduceInDepotSearcher SearchModel = new ProduceInDepotSearcher();
-    private Table<ProduceInDepot_View> dataTable;
+    private DepotStockSearcher SearchModel = new DepotStockSearcher();
+    private Table<DepotStock_View> dataTable;
 
     private List<SelectedItem> AllDepotss = new List<SelectedItem>();
+
+    private List<SelectedItem> AllProductss = new List<SelectedItem>();
 
 
     protected override async Task OnInitializedAsync()
     {
 
-        AllDepotss = await WtmBlazor.Api.CallItemsApi("/api/ProduceInDepot/GetDepotss", placeholder: WtmBlazor.Localizer["Sys.All"]);
+        AllDepotss = await WtmBlazor.Api.CallItemsApi("/api/DepotStock/GetDepotss", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        AllProductss = await WtmBlazor.Api.CallItemsApi("/api/DepotStock/GetProductss", placeholder: WtmBlazor.Localizer["Sys.All"]);
 
         await base.OnInitializedAsync();
     }
 
-    private async Task<QueryData<ProduceInDepot_View>> OnSearch(QueryPageOptions opts)
+    private async Task<QueryData<DepotStock_View>> OnSearch(QueryPageOptions opts)
     {
-        return await StartSearch<ProduceInDepot_View>("/api/ProduceInDepot/search", SearchModel, opts);
+        return await StartSearch<DepotStock_View>("/api/DepotStock/search", SearchModel, opts);
     }
 
     private void DoSearch()
@@ -90,7 +96,7 @@
         dataTable.QueryAsync();
     }
 
-    private async Task OnCreateClick(IEnumerable<ProduceInDepot_View> items)
+    private async Task OnCreateClick(IEnumerable<DepotStock_View> items)
     {
         if (await OpenDialog<Create>(WtmBlazor.Localizer["Sys.Create"]) == DialogResult.Yes)
         {
@@ -98,7 +104,7 @@
         }
     }
 
-    private async Task OnEditClick(ProduceInDepot_View item)
+    private async Task OnEditClick(DepotStock_View item)
     {
         if (await OpenDialog<Edit>(WtmBlazor.Localizer["Sys.Edit"], x => x.id == item.ID.ToString()) == DialogResult.Yes)
         {
@@ -106,7 +112,7 @@
         }
     }
 
-    private async Task OnDetailsClick(ProduceInDepot_View item)
+    private async Task OnDetailsClick(DepotStock_View item)
     {
         await OpenDialog<Details>(WtmBlazor.Localizer["Sys.Details"], x => x.id == item.ID.ToString());
     }
@@ -115,7 +121,7 @@
     {
         if (dataTable.SelectedRows?.Any() == true)
         {
-            await PostsData(dataTable.SelectedRows.Select(x => x.ID).ToList(), $"/api/ProduceInDepot/batchdelete", (s) => WtmBlazor.Localizer["Sys.BatchDeleteSuccess", s]);
+            await PostsData(dataTable.SelectedRows.Select(x => x.ID).ToList(), $"/api/DepotStock/batchdelete", (s) => WtmBlazor.Localizer["Sys.BatchDeleteSuccess", s]);
             await dataTable.QueryAsync();
         }
         else
@@ -124,25 +130,25 @@
         }
     }
 
-    private async Task OnDeleteClick(ProduceInDepot_View item)
+    private async Task OnDeleteClick(DepotStock_View item)
     {
-        await PostsData(new List<string> { item.ID.ToString() }, $"/api/ProduceInDepot/batchdelete", (s) => "Sys.OprationSuccess");
+        await PostsData(new List<string> { item.ID.ToString() }, $"/api/DepotStock/batchdelete", (s) => "Sys.OprationSuccess");
         await dataTable.QueryAsync();
     }
 
 
-    private async Task OnExportClick(IEnumerable<ProduceInDepot_View> items)
+    private async Task OnExportClick(IEnumerable<DepotStock_View> items)
     {
         if (dataTable.SelectedRows?.Any() == true)
         {
-            await Download("/api/ProduceInDepot/ExportExcelByIds", dataTable.SelectedRows.Select(x => x.ID.ToString()).ToList());
+            await Download("/api/DepotStock/ExportExcelByIds", dataTable.SelectedRows.Select(x => x.ID.ToString()).ToList());
         }
         else
         {
-            await Download("/api/ProduceInDepot/ExportExcel", SearchModel);
+            await Download("/api/DepotStock/ExportExcel", SearchModel);
         }
     }
-    private async Task OnImportClick(IEnumerable<ProduceInDepot_View> items)
+    private async Task OnImportClick(IEnumerable<DepotStock_View> items)
     {
         if (await OpenDialog<Import>(WtmBlazor.Localizer["Sys.Import"]) == DialogResult.Yes)
         {

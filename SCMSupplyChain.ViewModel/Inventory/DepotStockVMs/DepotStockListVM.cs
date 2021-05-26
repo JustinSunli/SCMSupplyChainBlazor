@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using SCMSupplyChain.Model;
 
 
-namespace SCMSupplyChain.ViewModel.InboundData.DepotStockVMs
+namespace SCMSupplyChain.ViewModel.Inventory.DepotStockVMs
 {
     public partial class DepotStockListVM : BasePagedListVM<DepotStock_View, DepotStockSearcher>
     {
@@ -30,6 +30,7 @@ namespace SCMSupplyChain.ViewModel.InboundData.DepotStockVMs
             var query = DC.Set<DepotStock>()
                 .CheckEqual(Searcher.DepotsID, x=>x.DepotsID)
                 .CheckEqual(Searcher.ProductsID, x=>x.ProductsID)
+                .CheckEqual(Searcher.DSAmount, x=>x.DSAmount)
                 .Select(x => new DepotStock_View
                 {
 				    ID = x.ID,

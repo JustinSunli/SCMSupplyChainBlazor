@@ -8,7 +8,7 @@ using WalkingTec.Mvvm.Core.Extensions;
 using SCMSupplyChain.Model;
 
 
-namespace SCMSupplyChain.ViewModel.InboundData.DepotStockVMs
+namespace SCMSupplyChain.ViewModel.Inventory.DepotStockVMs
 {
     public partial class DepotStockSearcher : BaseSearcher
     {
@@ -16,6 +16,8 @@ namespace SCMSupplyChain.ViewModel.InboundData.DepotStockVMs
         public Guid? DepotsID { get; set; }
         [Display(Name = "商品")]
         public Guid? ProductsID { get; set; }
+        [Display(Name = "库存数量")]
+        public Int32? DSAmount { get; set; }
 
         protected override void InitVM()
         {

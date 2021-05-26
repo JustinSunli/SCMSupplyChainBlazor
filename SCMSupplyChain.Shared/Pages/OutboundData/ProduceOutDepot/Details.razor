@@ -1,13 +1,13 @@
-﻿@page "/InboundData/ProduceInDepot/Details/{id}"
-@using SCMSupplyChain.ViewModel.InboundData.ProduceInDepotVMs;
+﻿@page "/OutboundData/ProduceOutDepot/Details/{id}"
+@using SCMSupplyChain.ViewModel.OutboundData.ProduceOutDepotVMs;
 @inherits BasePage
 
 <ValidateForm @ref="vform" Model="@Model" >
     <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.FormRow">
 
-            <Display @bind-Value="@Model.Entity.PIDID"   ShowLabel="true"/>
             <Display @bind-Value="@Model.Entity.DepotsID" Data="@AllDepotss"  ShowLabel="true"/>
-            <Display @bind-Value="@Model.Entity.PDIDesc"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.PODState"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.PODDesc"   ShowLabel="true"/>
     </Row>
     <div class="modal-footer table-modal-footer">
         <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
@@ -16,7 +16,7 @@
 
 @code {
 
-    private ProduceInDepotVM Model = new ProduceInDepotVM();
+    private ProduceOutDepotVM Model = new ProduceOutDepotVM();
     private ValidateForm vform { get; set; }
     [Parameter]
     public string id { get; set; }
@@ -27,9 +27,9 @@
     protected override async Task OnInitializedAsync()
     {
 
-        AllDepotss = await WtmBlazor.Api.CallItemsApi("/api/ProduceInDepot/GetDepotss", placeholder: WtmBlazor.Localizer["Sys.All"]);
+        AllDepotss = await WtmBlazor.Api.CallItemsApi("/api/ProduceOutDepot/GetDepotss", placeholder: WtmBlazor.Localizer["Sys.All"]);
 
-        var rv = await WtmBlazor.Api.CallAPI<ProduceInDepotVM>($"/api/ProduceInDepot/{id}");
+        var rv = await WtmBlazor.Api.CallAPI<ProduceOutDepotVM>($"/api/ProduceOutDepot/{id}");
         Model = rv.Data;
     }
 

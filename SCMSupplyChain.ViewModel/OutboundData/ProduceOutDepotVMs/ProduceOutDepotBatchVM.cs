@@ -8,14 +8,14 @@ using WalkingTec.Mvvm.Core.Extensions;
 using SCMSupplyChain.Model;
 
 
-namespace SCMSupplyChain.ViewModel.InboundData.DepotStockVMs
+namespace SCMSupplyChain.ViewModel.OutboundData.ProduceOutDepotVMs
 {
-    public partial class DepotStockBatchVM : BaseBatchVM<DepotStock, DepotStock_BatchEdit>
+    public partial class ProduceOutDepotBatchVM : BaseBatchVM<ProduceOutDepot, ProduceOutDepot_BatchEdit>
     {
-        public DepotStockBatchVM()
+        public ProduceOutDepotBatchVM()
         {
-            ListVM = new DepotStockListVM();
-            LinkedVM = new DepotStock_BatchEdit();
+            ListVM = new ProduceOutDepotListVM();
+            LinkedVM = new ProduceOutDepot_BatchEdit();
         }
 
     }
@@ -23,7 +23,7 @@ namespace SCMSupplyChain.ViewModel.InboundData.DepotStockVMs
 	/// <summary>
     /// Class to define batch edit fields
     /// </summary>
-    public class DepotStock_BatchEdit : BaseVM
+    public class ProduceOutDepot_BatchEdit : BaseVM
     {
 
         protected override void InitVM()
