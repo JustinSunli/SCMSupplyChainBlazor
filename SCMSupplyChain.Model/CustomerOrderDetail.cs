@@ -24,23 +24,19 @@ namespace SCMSupplyChain.Model
         public Products Products { get; set; }
 
         [Display(Name = "数量")]
-        [Required(ErrorMessage = "{0}不能为空")]
-        [RegularExpression(@"^[0-9]*[1-9][0-9]*$", ErrorMessage = "请输入正确的{0}")]
+        [RegularExpression(@"^[0-9]*[1-9][0-9]*$", ErrorMessage = "请输入正确的数量")]
         public int CODAmount { get; set; }
 
         [Display(Name = "价格")]
-        [Required(ErrorMessage = "{0}不能为空")]
-        [RegularExpression(@"(?!^0*(\.0{1,2})?$)^\d{1,13}(\.\d{1,2})?$", ErrorMessage = "请输入正确的{0}")]
+        [RegularExpression(@"(?!^0*(\.0{1,2})?$)^\d{1,13}(\.\d{1,2})?$", ErrorMessage = "请输入正确的价格")]
         public double CODPrice { get; set; }
 
         [Display(Name = "折扣")]
-        [Required(ErrorMessage = "{0}不能为空")]
-        [RegularExpression(@"(?!^0*(\.0{1,2})?$)^\d{1,13}(\.\d{1,2})?$", ErrorMessage = "请输入正确的{0}")]
+        [RegularExpression(@"(?!^0*(\.0{1,2})?$)^\d{1,13}(\.\d{1,2})?$", ErrorMessage = "请输入正确的折扣")]
         public double CODDiscont { get; set; }
 
         [Display(Name = "折后价")]
-        [Required(ErrorMessage = "{0}不能为空")]
-        [RegularExpression(@"(?!^0*(\.0{1,2})?$)^\d{1,13}(\.\d{1,2})?$", ErrorMessage = "请输入正确的{0}")]
+        [RegularExpression(@"(?!^0*(\.0{1,2})?$)^\d{1,13}(\.\d{1,2})?$", ErrorMessage = "请输入正确的折后价")]
         public decimal CODDisPrice { get; set; }
 
         [Display(Name = "已销售数量")]

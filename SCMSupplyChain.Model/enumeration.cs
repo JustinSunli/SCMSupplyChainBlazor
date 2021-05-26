@@ -1,6 +1,7 @@
 ﻿
 namespace SCMSupplyChain.Model
 {
+
     /// <summary>
     /// 出入库记录
     /// </summary>

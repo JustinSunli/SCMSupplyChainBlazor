@@ -8,16 +8,13 @@ namespace SCMSupplyChain.Model
     public class PayOffs: PersistPoco
     {
         [Display(Name ="报溢单号")]
-        [Required(ErrorMessage="{0}不能为空")]
-        [StringLength(200,ErrorMessage= "{0}超过最长限制,200内")]
+        [Required(ErrorMessage="报溢单号不能为空")]
+        [StringLength(200,ErrorMessage= "报溢单号超过最长限制,200内")]
         public string POID { get; set; }
 
         [Display(Name ="仓库")]
-        [Required(ErrorMessage = "{0}不能为空")]
-        public Guid DepotsID { get; set; }
-
+        public Guid? DepotsID { get; set; }
         [Display(Name = "仓库")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public Depots Depots { get; set; }
 
         [Display(Name ="状态")]

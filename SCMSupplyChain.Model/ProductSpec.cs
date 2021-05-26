@@ -7,8 +7,8 @@ namespace SCMSupplyChain.Model
     public class ProductSpec : PersistPoco
     {
         [Display(Name = "颜色")]
-        [Required(ErrorMessage = "{0}不能为空")]
-        [StringLength(200, ErrorMessage = "{0}超过最长限制,200内")]
+        [Required(ErrorMessage = "颜色不能为空")]
+        [StringLength(200, ErrorMessage = "颜色超过最长限制,200内")]
         public string PSName { get; set; }
     }
 }
