@@ -28,8 +28,6 @@ namespace SCMSupplyChain.ViewModel.InboundData.StockInDepotVMs
         public ExcelPropety SIDFreight_Excel = ExcelPropety.CreateProperty<StockInDepot>(x => x.SIDFreight);
         [Display(Name = "审核状态")]
         public ExcelPropety SIDData_Excel = ExcelPropety.CreateProperty<StockInDepot>(x => x.SIDData);
-        [Display(Name = "备注")]
-        public ExcelPropety SIDDesc_Excel = ExcelPropety.CreateProperty<StockInDepot>(x => x.SIDDesc);
 
 	    protected override void InitVM()
         {

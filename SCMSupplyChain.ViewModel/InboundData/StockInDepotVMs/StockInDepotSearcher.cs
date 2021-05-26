@@ -12,6 +12,8 @@ namespace SCMSupplyChain.ViewModel.InboundData.StockInDepotVMs
 {
     public partial class StockInDepotSearcher : BaseSearcher
     {
+        [Display(Name = "采购入库单号")]
+        public String SIDID { get; set; }
         [Display(Name = "供货商")]
         public Guid? ProductLendID { get; set; }
         [Display(Name = "仓库")]
@@ -20,6 +22,10 @@ namespace SCMSupplyChain.ViewModel.InboundData.StockInDepotVMs
         public Guid? StocksID { get; set; }
         [Display(Name = "收货时间")]
         public DateRange SIDDate { get; set; }
+        [Display(Name = "运费")]
+        public Double? SIDFreight { get; set; }
+        [Display(Name = "审核状态")]
+        public SIDData? SIDData { get; set; }
 
         protected override void InitVM()
         {

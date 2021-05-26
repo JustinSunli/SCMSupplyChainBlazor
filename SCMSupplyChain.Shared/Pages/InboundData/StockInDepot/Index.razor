@@ -7,10 +7,13 @@
     <ValidateForm Model="@SearchModel">
         <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Inline">
 
+            <BootstrapInput @bind-Value="@SearchModel.SIDID"  />
             <Select @bind-Value="@SearchModel.ProductLendID" Items="@AllProductLends" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
             <Select @bind-Value="@SearchModel.DepotsID" Items="@AllDepotss" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
             <Select @bind-Value="@SearchModel.StocksID" Items="@AllStockss" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
             <WTDateRange @bind-Value="@SearchModel.SIDDate"  />
+            <BootstrapInputNumber @bind-Value="@SearchModel.SIDFreight"  />
+            <Select @bind-Value="@SearchModel.SIDData"  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
         </Row>
     </ValidateForm>
 </WTSearchPanel>
@@ -29,7 +32,6 @@
         <TableColumn @bind-Field="@context.SIDDeliver"  />
         <TableColumn @bind-Field="@context.SIDFreight"  />
         <TableColumn @bind-Field="@context.SIDData"  />
-
     </TableColumns>
     <TableToolbarTemplate>
         @if (IsAccessable("/api/StockInDepot/add"))

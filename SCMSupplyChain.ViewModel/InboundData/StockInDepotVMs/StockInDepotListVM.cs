@@ -32,10 +32,13 @@ namespace SCMSupplyChain.ViewModel.InboundData.StockInDepotVMs
         public override IOrderedQueryable<StockInDepot_View> GetSearchQuery()
         {
             var query = DC.Set<StockInDepot>()
+                .CheckContain(Searcher.SIDID, x=>x.SIDID)
                 .CheckEqual(Searcher.ProductLendID, x=>x.ProductLendID)
                 .CheckEqual(Searcher.DepotsID, x=>x.DepotsID)
                 .CheckEqual(Searcher.StocksID, x=>x.StocksID)
                 .CheckBetween(Searcher.SIDDate?.GetStartTime(), Searcher.SIDDate?.GetEndTime(), x => x.SIDDate, includeMax: false)
+                .CheckEqual(Searcher.SIDFreight, x=>x.SIDFreight)
+                .CheckEqual(Searcher.SIDData, x=>x.SIDData)
                 .Select(x => new StockInDepot_View
                 {
 				    ID = x.ID,
