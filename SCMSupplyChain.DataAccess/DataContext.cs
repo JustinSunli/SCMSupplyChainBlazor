@@ -66,7 +66,22 @@ namespace SCMSupplyChain.DataAccess
         {
         }
 
-        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //调出仓库
+            modelBuilder.Entity<Devolves>().HasOne(i => i.DepotsDevOut).WithMany().HasForeignKey(t => t.DepotsDevOutID).OnDelete(DeleteBehavior.Restrict);
+            //调入仓库
+            modelBuilder.Entity<Devolves>().HasOne(i => i.DepotsDevIn).WithMany().HasForeignKey(t => t.DepotsDevInID).OnDelete(DeleteBehavior.Restrict);
+            //供货商
+            modelBuilder.Entity<StockInDepot>().HasOne(i => i.ProductLend).WithMany().HasForeignKey(t => t.ProductLendID).OnDelete(DeleteBehavior.Restrict);
+            //仓库
+            modelBuilder.Entity<StockInDepot>().HasOne(i => i.Depots).WithMany().HasForeignKey(t => t.DepotsID).OnDelete(DeleteBehavior.Restrict);
+            
+            
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public override async Task<bool> DataInit(object allModules, bool IsSpa)
@@ -112,8 +127,8 @@ namespace SCMSupplyChain.DataAccess
     }
 
     /// <summary>
-    /// DesignTimeFactory for EF Migration, use your full connection string,
-    /// EF will find this class and use the connection defined here to run Add-Migration and Update-Database
+    /// 用于EF迁移的DesignTimeFactory，请使用完整的连接字符串，
+    /// EF将找到此类，并使用此处定义的连接来运行Add-Migration和Update-Database
     /// </summary>
     public class DataContextFactory : IDesignTimeDbContextFactory<DataContext>
     {

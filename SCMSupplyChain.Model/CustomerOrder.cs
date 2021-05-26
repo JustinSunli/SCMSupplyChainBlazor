@@ -12,6 +12,7 @@ namespace SCMSupplyChain.Model
         public Guid CustomersID { get; set; }
 
         [Display(Name = "客户名称")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public Customers Customers { get; set; }
 
         [Display(Name = "交货时间")]

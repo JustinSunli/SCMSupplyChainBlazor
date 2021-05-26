@@ -12,7 +12,7 @@
             <Select @bind-Value="@SearchModel.DepotsID" Items="@AllDepotss" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
             <Select @bind-Value="@SearchModel.StocksID" Items="@AllStockss" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
             <WTDateRange @bind-Value="@SearchModel.SIDDate"  />
-            <BootstrapInputNumber @bind-Value="@SearchModel.SIDFreight"  />
+            <BootstrapInput @bind-Value="@SearchModel.SIDDeliver"  />
             <Select @bind-Value="@SearchModel.SIDData"  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
         </Row>
     </ValidateForm>

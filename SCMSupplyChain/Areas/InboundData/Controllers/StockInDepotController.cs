@@ -16,11 +16,11 @@ namespace SCMSupplyChain.Controllers
     [ActionDescription("采购入库")]
     [ApiController]
     [Route("api/StockInDepot")]
-    public partial class StockInDepotController : BaseApiController
+	public partial class StockInDepotController : BaseApiController
     {
         [ActionDescription("Sys.Search")]
         [HttpPost("Search")]
-        public IActionResult Search(StockInDepotSearcher searcher)
+		public IActionResult Search(StockInDepotSearcher searcher)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace SCMSupplyChain.Controllers
             }
         }
 
-        [HttpPost("BatchDelete")]
+		[HttpPost("BatchDelete")]
         [ActionDescription("Sys.Delete")]
         public IActionResult BatchDelete(string[] ids)
         {
@@ -180,7 +180,7 @@ namespace SCMSupplyChain.Controllers
         [HttpGet("GetStockss")]
         public ActionResult GetStockss()
         {
-            return Ok(DC.Set<Stocks>().Where(x => x.StockID != null).GetSelectListItems(Wtm, x => x.StockID));
+            return Ok(DC.Set<Stocks>().GetSelectListItems(Wtm, x => x.StockID));
         }
 
     }

@@ -37,7 +37,7 @@ namespace SCMSupplyChain.ViewModel.InboundData.StockInDepotVMs
                 .CheckEqual(Searcher.DepotsID, x=>x.DepotsID)
                 .CheckEqual(Searcher.StocksID, x=>x.StocksID)
                 .CheckBetween(Searcher.SIDDate?.GetStartTime(), Searcher.SIDDate?.GetEndTime(), x => x.SIDDate, includeMax: false)
-                .CheckEqual(Searcher.SIDFreight, x=>x.SIDFreight)
+                .CheckContain(Searcher.SIDDeliver, x=>x.SIDDeliver)
                 .CheckEqual(Searcher.SIDData, x=>x.SIDData)
                 .Select(x => new StockInDepot_View
                 {

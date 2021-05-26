@@ -38,14 +38,14 @@ namespace SCMSupplyChain.Test
             StockInDepotVM vm = _controller.Wtm.CreateVM<StockInDepotVM>();
             StockInDepot v = new StockInDepot();
             
-            v.SIDID = "TUfiQGp";
+            v.SIDID = "tax";
             v.ProductLendID = AddProductLend();
             v.DepotsID = AddDepots();
             v.StocksID = AddStocks();
-            v.SIDDeliver = "dK05bG";
-            v.SIDFreight = 35;
-            v.SIDData = SCMSupplyChain.Model.SIDData.未定义2;
-            v.SIDDesc = "OGISzxvR";
+            v.SIDDeliver = "MDcpYxQ";
+            v.SIDFreight = 15;
+            v.SIDData = SCMSupplyChain.Model.SIDData.未定义1;
+            v.SIDDesc = "SBi";
             vm.Entity = v;
             var rv = _controller.Add(vm);
             Assert.IsInstanceOfType(rv, typeof(OkObjectResult));
@@ -54,11 +54,11 @@ namespace SCMSupplyChain.Test
             {
                 var data = context.Set<StockInDepot>().Find(v.ID);
                 
-                Assert.AreEqual(data.SIDID, "TUfiQGp");
-                Assert.AreEqual(data.SIDDeliver, "dK05bG");
-                Assert.AreEqual(data.SIDFreight, 35);
-                Assert.AreEqual(data.SIDData, SCMSupplyChain.Model.SIDData.未定义2);
-                Assert.AreEqual(data.SIDDesc, "OGISzxvR");
+                Assert.AreEqual(data.SIDID, "tax");
+                Assert.AreEqual(data.SIDDeliver, "MDcpYxQ");
+                Assert.AreEqual(data.SIDFreight, 15);
+                Assert.AreEqual(data.SIDData, SCMSupplyChain.Model.SIDData.未定义1);
+                Assert.AreEqual(data.SIDDesc, "SBi");
                 Assert.AreEqual(data.CreateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.CreateTime.Value).Seconds < 10);
             }
@@ -71,14 +71,14 @@ namespace SCMSupplyChain.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
        			
-                v.SIDID = "TUfiQGp";
+                v.SIDID = "tax";
                 v.ProductLendID = AddProductLend();
                 v.DepotsID = AddDepots();
                 v.StocksID = AddStocks();
-                v.SIDDeliver = "dK05bG";
-                v.SIDFreight = 35;
-                v.SIDData = SCMSupplyChain.Model.SIDData.未定义2;
-                v.SIDDesc = "OGISzxvR";
+                v.SIDDeliver = "MDcpYxQ";
+                v.SIDFreight = 15;
+                v.SIDData = SCMSupplyChain.Model.SIDData.未定义1;
+                v.SIDDesc = "SBi";
                 context.Set<StockInDepot>().Add(v);
                 context.SaveChanges();
             }
@@ -88,11 +88,11 @@ namespace SCMSupplyChain.Test
             v = new StockInDepot();
             v.ID = oldID;
        		
-            v.SIDID = "WJCLlJ9";
-            v.SIDDeliver = "BVvLfbY";
-            v.SIDFreight = 92;
-            v.SIDData = SCMSupplyChain.Model.SIDData.未定义1;
-            v.SIDDesc = "5apu";
+            v.SIDID = "mH1ZBXEQ";
+            v.SIDDeliver = "FUqR1pOx";
+            v.SIDFreight = 38;
+            v.SIDData = SCMSupplyChain.Model.SIDData.未定义2;
+            v.SIDDesc = "6uQm6FHC";
             vm.Entity = v;
             vm.FC = new Dictionary<string, object>();
 			
@@ -111,11 +111,11 @@ namespace SCMSupplyChain.Test
             {
                 var data = context.Set<StockInDepot>().Find(v.ID);
  				
-                Assert.AreEqual(data.SIDID, "WJCLlJ9");
-                Assert.AreEqual(data.SIDDeliver, "BVvLfbY");
-                Assert.AreEqual(data.SIDFreight, 92);
-                Assert.AreEqual(data.SIDData, SCMSupplyChain.Model.SIDData.未定义1);
-                Assert.AreEqual(data.SIDDesc, "5apu");
+                Assert.AreEqual(data.SIDID, "mH1ZBXEQ");
+                Assert.AreEqual(data.SIDDeliver, "FUqR1pOx");
+                Assert.AreEqual(data.SIDFreight, 38);
+                Assert.AreEqual(data.SIDData, SCMSupplyChain.Model.SIDData.未定义2);
+                Assert.AreEqual(data.SIDDesc, "6uQm6FHC");
                 Assert.AreEqual(data.UpdateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.UpdateTime.Value).Seconds < 10);
             }
@@ -129,14 +129,14 @@ namespace SCMSupplyChain.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
         		
-                v.SIDID = "TUfiQGp";
+                v.SIDID = "tax";
                 v.ProductLendID = AddProductLend();
                 v.DepotsID = AddDepots();
                 v.StocksID = AddStocks();
-                v.SIDDeliver = "dK05bG";
-                v.SIDFreight = 35;
-                v.SIDData = SCMSupplyChain.Model.SIDData.未定义2;
-                v.SIDDesc = "OGISzxvR";
+                v.SIDDeliver = "MDcpYxQ";
+                v.SIDFreight = 15;
+                v.SIDData = SCMSupplyChain.Model.SIDData.未定义1;
+                v.SIDDesc = "SBi";
                 context.Set<StockInDepot>().Add(v);
                 context.SaveChanges();
             }
@@ -152,22 +152,22 @@ namespace SCMSupplyChain.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 				
-                v1.SIDID = "TUfiQGp";
+                v1.SIDID = "tax";
                 v1.ProductLendID = AddProductLend();
                 v1.DepotsID = AddDepots();
                 v1.StocksID = AddStocks();
-                v1.SIDDeliver = "dK05bG";
-                v1.SIDFreight = 35;
-                v1.SIDData = SCMSupplyChain.Model.SIDData.未定义2;
-                v1.SIDDesc = "OGISzxvR";
-                v2.SIDID = "WJCLlJ9";
+                v1.SIDDeliver = "MDcpYxQ";
+                v1.SIDFreight = 15;
+                v1.SIDData = SCMSupplyChain.Model.SIDData.未定义1;
+                v1.SIDDesc = "SBi";
+                v2.SIDID = "mH1ZBXEQ";
                 v2.ProductLendID = v1.ProductLendID; 
                 v2.DepotsID = v1.DepotsID; 
                 v2.StocksID = v1.StocksID; 
-                v2.SIDDeliver = "BVvLfbY";
-                v2.SIDFreight = 92;
-                v2.SIDData = SCMSupplyChain.Model.SIDData.未定义1;
-                v2.SIDDesc = "5apu";
+                v2.SIDDeliver = "FUqR1pOx";
+                v2.SIDFreight = 38;
+                v2.SIDData = SCMSupplyChain.Model.SIDData.未定义2;
+                v2.SIDDesc = "6uQm6FHC";
                 context.Set<StockInDepot>().Add(v1);
                 context.Set<StockInDepot>().Add(v2);
                 context.SaveChanges();
@@ -196,17 +196,17 @@ namespace SCMSupplyChain.Test
             {
                 try{
 
-                v.PPName = "GyU";
-                v.PPCompany = "SxjQl80aE";
-                v.PPMan = "ER3";
-                v.PPTel = "kS6";
-                v.PPAddress = "ovHfhHr";
-                v.PPFax = "HRsZG4";
-                v.Email = "O2kSAOaj";
-                v.PPUrl = "r9NY6lv";
-                v.PPBank = "8ktjvaS";
-                v.PPGoods = "ujL9";
-                v.PPDesc = "suzeP1Af";
+                v.PPName = "XeyRpyJ";
+                v.PPCompany = "NagQSeGX7";
+                v.PPMan = "42dA";
+                v.PPTel = "tCNP";
+                v.PPAddress = "HhRt";
+                v.PPFax = "m4T7j";
+                v.Email = "dTntSyfqx";
+                v.PPUrl = "cQJoJtNzP";
+                v.PPBank = "juM";
+                v.PPGoods = "EwJqfYu";
+                v.PPDesc = "WT8c";
                 context.Set<ProductLend>().Add(v);
                 context.SaveChanges();
                 }
@@ -222,11 +222,11 @@ namespace SCMSupplyChain.Test
             {
                 try{
 
-                v.DepotName = "3hT1";
-                v.DepotMan = "t1gzrVttS";
-                v.DepotTelephone = "0ipQ";
-                v.DepotAddress = "Qn2l6X2";
-                v.DepotDesc = "TpW";
+                v.DepotName = "CkzB";
+                v.DepotMan = "umY";
+                v.DepotTelephone = "zEUgS";
+                v.DepotAddress = "CN4OW0n";
+                v.DepotDesc = "aDMMkGiXn";
                 context.Set<Depots>().Add(v);
                 context.SaveChanges();
                 }
@@ -242,10 +242,10 @@ namespace SCMSupplyChain.Test
             {
                 try{
 
-                v.StockID = "WKkkKRq8b";
+                v.StockID = "RRmG2rXs";
                 v.ProductLendID = AddProductLend();
                 v.StockState = SCMSupplyChain.Model.StockState.未定义3;
-                v.StockDesc = "bfEszey2";
+                v.StockDesc = "nUU";
                 context.Set<Stocks>().Add(v);
                 context.SaveChanges();
                 }

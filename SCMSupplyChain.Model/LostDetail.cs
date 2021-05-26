@@ -14,16 +14,18 @@ namespace SCMSupplyChain.Model
 
         [Display(Name ="报损单")]
         [Required(ErrorMessage = "{0}不能为空")]
-        public Guid LostsID { get; set; }
+        public Guid? LostsID { get; set; }
 
         [Display(Name = "报损单")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public Losts Losts { get; set; }
 
         [Display(Name ="商品")]
         [Required(ErrorMessage = "{0}不能为空")]
-        public Guid ProductsID { get; set; }
+        public Guid? ProductsID { get; set; }
 
         [Display(Name = "商品")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public Products Products { get; set; }
 
         [Display(Name = "数量")]

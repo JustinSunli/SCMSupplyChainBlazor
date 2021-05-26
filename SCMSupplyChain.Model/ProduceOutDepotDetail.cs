@@ -14,9 +14,10 @@ namespace SCMSupplyChain.Model
 
         [Display(Name = "生产领料单号")]
         [Required(ErrorMessage = "{0}不能为空")]
-        public Guid ProduceOutDepotID { get; set; }
+        public Guid? ProduceOutDepotID { get; set; }
 
         [Display(Name = "生产领料单号")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public ProduceOutDepot ProduceOutDepot { get; set; }
 
         [Display(Name = "数量")]

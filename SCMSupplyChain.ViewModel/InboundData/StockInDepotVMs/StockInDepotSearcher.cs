@@ -22,8 +22,8 @@ namespace SCMSupplyChain.ViewModel.InboundData.StockInDepotVMs
         public Guid? StocksID { get; set; }
         [Display(Name = "收货时间")]
         public DateRange SIDDate { get; set; }
-        [Display(Name = "运费")]
-        public Double? SIDFreight { get; set; }
+        [Display(Name = "送货单号")]
+        public String SIDDeliver { get; set; }
         [Display(Name = "审核状态")]
         public SIDData? SIDData { get; set; }
 

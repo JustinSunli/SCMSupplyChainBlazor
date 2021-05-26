@@ -14,16 +14,17 @@ namespace SCMSupplyChain.Model
 
         [Display(Name = "其他出库单号")]
         [Required(ErrorMessage = "{0}不能为空")]
-        public Guid OtherOutDepotID { get; set; }
+        public Guid? OtherOutDepotID { get; set; }
 
         [Display(Name = "其他出库单号")]
         public OtherOutDepot OtherOutDepot { get; set; }
 
         [Display(Name = "商品")]
         [Required(ErrorMessage = "{0}不能为空")]
-        public Guid ProductsID { get; set; }
+        public Guid? ProductsID { get; set; }
 
         [Display(Name = "商品")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public Products Products { get; set; }
 
         [Display(Name = "数量")]

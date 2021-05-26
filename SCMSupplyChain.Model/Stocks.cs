@@ -14,9 +14,10 @@ namespace SCMSupplyChain.Model
 
         [Display(Name = "供货商")]
         [Required(ErrorMessage = "{0}不能为空")]
-        public Guid ProductLendID { get; set; }
+        public Guid? ProductLendID { get; set; }
 
         [Display(Name = "供货商")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public ProductLend ProductLend { get; set; }
 
         [Display(Name ="预计交货时间")]
