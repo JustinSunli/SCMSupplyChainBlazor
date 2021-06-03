@@ -1,4 +1,4 @@
-﻿@page "/OutboundData/InOutDepot/Create"
+@page "/OutboundData/InOutDepot/Create"
 @using SCMSupplyChain.ViewModel.OutboundData.InOutDepotVMs;
 @inherits BasePage
 
@@ -19,6 +19,7 @@
 @code {
 
     private InOutDepotVM Model = new InOutDepotVM();
+    
     private ValidateForm vform { get; set; }
 
     private List<SelectedItem> AllDepotss = new List<SelectedItem>();
