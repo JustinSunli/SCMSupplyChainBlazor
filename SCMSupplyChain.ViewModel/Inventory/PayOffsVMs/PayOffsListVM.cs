@@ -38,8 +38,9 @@ namespace SCMSupplyChain.ViewModel.Inventory.PayOffsVMs
                     DepotName_view = x.Depots.DepotName,
                     POState = x.POState,
                     PODesc = x.PODesc,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

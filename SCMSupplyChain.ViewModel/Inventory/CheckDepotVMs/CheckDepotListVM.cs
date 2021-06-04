@@ -38,8 +38,9 @@ namespace SCMSupplyChain.ViewModel.Inventory.CheckDepotVMs
                     Name_view = x.FrameworkUser.Name,
                     CDState = x.CDState,
                     CDDesc = x.CDDesc,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

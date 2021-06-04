@@ -35,8 +35,9 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductTypesVMs
                     PTName_view = x.Parent.PTName,
                     PTName = x.PTName,
                     PTDes = x.PTDes,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

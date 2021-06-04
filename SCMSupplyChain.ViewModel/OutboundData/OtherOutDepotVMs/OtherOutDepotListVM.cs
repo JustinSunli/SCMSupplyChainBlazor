@@ -38,8 +38,9 @@ namespace SCMSupplyChain.ViewModel.OutboundData.OtherOutDepotVMs
                     OODState = x.OODState,
                     DepotName_view = x.Depots.DepotName,
                     OODDesc = x.OODDesc,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

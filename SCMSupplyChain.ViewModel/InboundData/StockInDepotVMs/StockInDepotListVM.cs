@@ -50,8 +50,9 @@ namespace SCMSupplyChain.ViewModel.InboundData.StockInDepotVMs
                     SIDDeliver = x.SIDDeliver,
                     SIDFreight = x.SIDFreight,
                     SIDData = x.SIDData,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

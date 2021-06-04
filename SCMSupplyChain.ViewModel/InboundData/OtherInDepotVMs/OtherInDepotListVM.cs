@@ -28,24 +28,26 @@ namespace SCMSupplyChain.ViewModel.InboundData.OtherInDepotVMs
         public override IOrderedQueryable<OtherInDepot_View> GetSearchQuery()
         {
             var query = DC.Set<OtherInDepot>()
-                .CheckContain(Searcher.OIDID, x=>x.OIDID)
-                .CheckEqual(Searcher.DepotsID, x=>x.DepotsID)
-                .CheckEqual(Searcher.OIDState, x=>x.OIDState)
+                .CheckContain(Searcher.OIDID, x => x.OIDID)
+                .CheckEqual(Searcher.DepotsID, x => x.DepotsID)
+                .CheckEqual(Searcher.OIDState, x => x.OIDState)
                 .Select(x => new OtherInDepot_View
                 {
-				    ID = x.ID,
+                    ID = x.ID,
                     OIDID = x.OIDID,
                     DepotName_view = x.Depots.DepotName,
                     OIDState = x.OIDState,
                     OIDDesc = x.OIDDesc,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 
     }
 
-    public class OtherInDepot_View : OtherInDepot{
+    public class OtherInDepot_View : OtherInDepot
+    {
         [Display(Name = "仓库名称")]
         public String DepotName_view { get; set; }
 

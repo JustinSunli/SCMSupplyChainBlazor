@@ -38,8 +38,9 @@ namespace SCMSupplyChain.ViewModel.OutboundData.InOutDepotVMs
                     IODType = x.IODType,
                     DepotName_view = x.Depots.DepotName,
                     IODDesc = x.IODDesc,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

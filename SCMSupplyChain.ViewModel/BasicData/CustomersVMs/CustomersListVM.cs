@@ -42,8 +42,9 @@ namespace SCMSupplyChain.ViewModel.BasicData.CustomersVMs
                     CusMan = x.CusMan,
                     CusTelephone = x.CusTelephone,
                     CusDesc = x.CusDesc,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

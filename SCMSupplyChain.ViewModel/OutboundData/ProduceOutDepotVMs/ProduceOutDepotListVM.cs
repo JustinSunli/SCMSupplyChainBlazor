@@ -35,8 +35,9 @@ namespace SCMSupplyChain.ViewModel.OutboundData.ProduceOutDepotVMs
                     DepotName_view = x.Depots.DepotName,
                     PODState = x.PODState,
                     PODDesc = x.PODDesc,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

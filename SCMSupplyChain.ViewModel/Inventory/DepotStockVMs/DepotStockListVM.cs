@@ -38,8 +38,9 @@ namespace SCMSupplyChain.ViewModel.Inventory.DepotStockVMs
                     ProdName_view = x.Products.ProdName,
                     DSAmount = x.DSAmount,
                     DSPrice = x.DSPrice,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

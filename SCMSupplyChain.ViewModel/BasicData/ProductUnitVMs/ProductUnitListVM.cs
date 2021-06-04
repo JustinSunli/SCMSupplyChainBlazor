@@ -30,8 +30,9 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductUnitVMs
                 {
 				    ID = x.ID,
                     PUName = x.PUName,
+                    CreateTime =x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

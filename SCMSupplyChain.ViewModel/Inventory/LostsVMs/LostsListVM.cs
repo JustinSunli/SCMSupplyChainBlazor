@@ -38,8 +38,9 @@ namespace SCMSupplyChain.ViewModel.Inventory.LostsVMs
                     DepotName_view = x.Depots.DepotName,
                     LostDesc = x.LostDesc,
                     LostState = x.LostState,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

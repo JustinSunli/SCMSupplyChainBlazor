@@ -47,8 +47,9 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductsVMs
                     ProWorkShop = x.ProWorkShop,
                     ProInPrice = x.ProInPrice,
                     ProPrice = x.ProPrice,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime.Value);
             return query;
         }
 

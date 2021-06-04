@@ -40,8 +40,9 @@ namespace SCMSupplyChain.ViewModel.BasicData.DepotsVMs
                     DepotTelephone = x.DepotTelephone,
                     DepotAddress = x.DepotAddress,
                     DepotDesc = x.DepotDesc,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

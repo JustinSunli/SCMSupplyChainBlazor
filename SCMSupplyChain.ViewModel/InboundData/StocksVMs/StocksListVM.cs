@@ -39,8 +39,9 @@ namespace SCMSupplyChain.ViewModel.InboundData.StocksVMs
                     PPName_view = x.ProductLend.PPName,
                     StockInDate = x.StockInDate,
                     StockState = x.StockState,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

@@ -52,8 +52,9 @@ namespace SCMSupplyChain.ViewModel.BasicData.ProductLendVMs
                     PPBank = x.PPBank,
                     PPGoods = x.PPGoods,
                     PPDesc = x.PPDesc,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 

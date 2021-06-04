@@ -28,25 +28,27 @@ namespace SCMSupplyChain.ViewModel.InboundData.SaleReturnVMs
         public override IOrderedQueryable<SaleReturn_View> GetSearchQuery()
         {
             var query = DC.Set<SaleReturn>()
-                .CheckContain(Searcher.SRID, x=>x.SRID)
-                .CheckEqual(Searcher.CustomersID, x=>x.CustomersID)
-                .CheckEqual(Searcher.DepotsID, x=>x.DepotsID)
-                .CheckEqual(Searcher.SRState, x=>x.SRState)
+                .CheckContain(Searcher.SRID, x => x.SRID)
+                .CheckEqual(Searcher.CustomersID, x => x.CustomersID)
+                .CheckEqual(Searcher.DepotsID, x => x.DepotsID)
+                .CheckEqual(Searcher.SRState, x => x.SRState)
                 .Select(x => new SaleReturn_View
                 {
-				    ID = x.ID,
+                    ID = x.ID,
                     SRID = x.SRID,
                     CusName_view = x.Customers.CusName,
                     DepotName_view = x.Depots.DepotName,
                     SRState = x.SRState,
+                    CreateTime = x.CreateTime,
                 })
-                .OrderBy(x => x.ID);
+                .OrderByDescending(x => x.CreateTime);
             return query;
         }
 
     }
 
-    public class SaleReturn_View : SaleReturn{
+    public class SaleReturn_View : SaleReturn
+    {
         [Display(Name = "客户名称")]
         public String CusName_view { get; set; }
         [Display(Name = "仓库名称")]
