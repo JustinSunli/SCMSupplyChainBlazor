@@ -17,7 +17,6 @@ namespace SCMSupplyChain.Model
         public Guid? DepotsDevOutID { get; set; }
 
         [Display(Name = "调出仓库")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public Depots DepotsDevOut { get; set; }
 
         [Display(Name = "调入仓库")]
@@ -25,15 +24,13 @@ namespace SCMSupplyChain.Model
         public Guid? DepotsDevInID { get; set; }
 
         [Display(Name = "调入仓库")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public Depots DepotsDevIn { get; set; }
 
         [Display(Name = "调拨人")]
         [Required(ErrorMessage = "{0}不能为空")]
-        public Guid FrameworkUserID { get; set; }
+        public Guid? FrameworkUserID { get; set; }
 
         [Display(Name = "调拨人")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public FrameworkUserBase FrameworkUserBase { get; set; }
 
         [Display(Name = "调拨时间")]

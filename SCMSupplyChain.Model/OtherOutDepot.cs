@@ -14,7 +14,6 @@ namespace SCMSupplyChain.Model
         public string OODID { get; set; } = "OD" + DateTime.Now.ToString("yyyyMMddhhmmss");
 
         [Display(Name ="状态")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public OODState OODState { get; set; }
 
         [Display(Name = "仓库")]
@@ -22,7 +21,6 @@ namespace SCMSupplyChain.Model
         public Guid? DepotsID { get; set; }
         
         [Display(Name = "仓库")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public Depots Depots { get; set; }
 
         [Display(Name = "备注")]

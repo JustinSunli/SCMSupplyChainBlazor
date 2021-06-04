@@ -16,7 +16,6 @@ namespace SCMSupplyChain.Model
         public Guid? ProductsID { get; set; }
 
         [Display(Name = "商品")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public Products Products { get; set; }
 
         [Display(Name = "生产入库单号")]
@@ -24,7 +23,6 @@ namespace SCMSupplyChain.Model
         public Guid? ProduceInDepotID { get; set; }
 
         [Display(Name = "生产入库单号")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public ProduceInDepot ProduceInDepot { get; set; }
 
         [Display(Name = "数量")]

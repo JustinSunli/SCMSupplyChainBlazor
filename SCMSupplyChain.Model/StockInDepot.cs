@@ -17,7 +17,6 @@ namespace SCMSupplyChain.Model
         public Guid? ProductLendID { get; set; }
 
         [Display(Name = "供货商")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public ProductLend ProductLend { get; set; }
 
         [Display(Name = "仓库")]
@@ -25,7 +24,6 @@ namespace SCMSupplyChain.Model
         public Guid? DepotsID { get; set; }
 
         [Display(Name = "仓库")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public Depots Depots { get; set; }
 
         [Display(Name = "采购单号")]
@@ -33,7 +31,6 @@ namespace SCMSupplyChain.Model
         public Guid? StocksID { get; set; }
 
         [Display(Name = "采购单号")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public Stocks Stocks { get; set; }
 
         [Display(Name = "收货时间")]

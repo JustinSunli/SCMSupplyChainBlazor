@@ -18,7 +18,6 @@ namespace SCMSupplyChain.Model
         public Guid? PayOffsID { get; set; }
 
         [Display(Name = "报溢单号")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public PayOffs PayOffs { get; set; }
 
         [Display(Name = "商品")]
@@ -26,7 +25,6 @@ namespace SCMSupplyChain.Model
         public Guid? ProductsID { get; set; }
 
         [Display(Name = "商品")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public Products Products { get; set; }
 
         [Display(Name = "数量")]

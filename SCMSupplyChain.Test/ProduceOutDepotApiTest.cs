@@ -39,8 +39,8 @@ namespace SCMSupplyChain.Test
             ProduceOutDepot v = new ProduceOutDepot();
             
             v.DepotsID = AddDepots();
-            v.PODState = SCMSupplyChain.Model.PODState.未定义1;
-            v.PODDesc = "3Suql2MX";
+            v.PODState = SCMSupplyChain.Model.PODState.未定义2;
+            v.PODDesc = "lqB1ni8";
             vm.Entity = v;
             var rv = _controller.Add(vm);
             Assert.IsInstanceOfType(rv, typeof(OkObjectResult));
@@ -49,8 +49,8 @@ namespace SCMSupplyChain.Test
             {
                 var data = context.Set<ProduceOutDepot>().Find(v.ID);
                 
-                Assert.AreEqual(data.PODState, SCMSupplyChain.Model.PODState.未定义1);
-                Assert.AreEqual(data.PODDesc, "3Suql2MX");
+                Assert.AreEqual(data.PODState, SCMSupplyChain.Model.PODState.未定义2);
+                Assert.AreEqual(data.PODDesc, "lqB1ni8");
                 Assert.AreEqual(data.CreateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.CreateTime.Value).Seconds < 10);
             }
@@ -64,8 +64,8 @@ namespace SCMSupplyChain.Test
             {
        			
                 v.DepotsID = AddDepots();
-                v.PODState = SCMSupplyChain.Model.PODState.未定义1;
-                v.PODDesc = "3Suql2MX";
+                v.PODState = SCMSupplyChain.Model.PODState.未定义2;
+                v.PODDesc = "lqB1ni8";
                 context.Set<ProduceOutDepot>().Add(v);
                 context.SaveChanges();
             }
@@ -75,8 +75,8 @@ namespace SCMSupplyChain.Test
             v = new ProduceOutDepot();
             v.ID = oldID;
        		
-            v.PODState = SCMSupplyChain.Model.PODState.未定义2;
-            v.PODDesc = "frB9rQz";
+            v.PODState = SCMSupplyChain.Model.PODState.未定义3;
+            v.PODDesc = "8upF8D";
             vm.Entity = v;
             vm.FC = new Dictionary<string, object>();
 			
@@ -90,8 +90,8 @@ namespace SCMSupplyChain.Test
             {
                 var data = context.Set<ProduceOutDepot>().Find(v.ID);
  				
-                Assert.AreEqual(data.PODState, SCMSupplyChain.Model.PODState.未定义2);
-                Assert.AreEqual(data.PODDesc, "frB9rQz");
+                Assert.AreEqual(data.PODState, SCMSupplyChain.Model.PODState.未定义3);
+                Assert.AreEqual(data.PODDesc, "8upF8D");
                 Assert.AreEqual(data.UpdateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.UpdateTime.Value).Seconds < 10);
             }
@@ -106,8 +106,8 @@ namespace SCMSupplyChain.Test
             {
         		
                 v.DepotsID = AddDepots();
-                v.PODState = SCMSupplyChain.Model.PODState.未定义1;
-                v.PODDesc = "3Suql2MX";
+                v.PODState = SCMSupplyChain.Model.PODState.未定义2;
+                v.PODDesc = "lqB1ni8";
                 context.Set<ProduceOutDepot>().Add(v);
                 context.SaveChanges();
             }
@@ -124,11 +124,11 @@ namespace SCMSupplyChain.Test
             {
 				
                 v1.DepotsID = AddDepots();
-                v1.PODState = SCMSupplyChain.Model.PODState.未定义1;
-                v1.PODDesc = "3Suql2MX";
+                v1.PODState = SCMSupplyChain.Model.PODState.未定义2;
+                v1.PODDesc = "lqB1ni8";
                 v2.DepotsID = v1.DepotsID; 
-                v2.PODState = SCMSupplyChain.Model.PODState.未定义2;
-                v2.PODDesc = "frB9rQz";
+                v2.PODState = SCMSupplyChain.Model.PODState.未定义3;
+                v2.PODDesc = "8upF8D";
                 context.Set<ProduceOutDepot>().Add(v1);
                 context.Set<ProduceOutDepot>().Add(v2);
                 context.SaveChanges();
@@ -157,11 +157,11 @@ namespace SCMSupplyChain.Test
             {
                 try{
 
-                v.DepotName = "5V9SDWuE";
-                v.DepotMan = "pMXb33";
-                v.DepotTelephone = "rSMYM";
-                v.DepotAddress = "mYg";
-                v.DepotDesc = "iaSDELE";
+                v.DepotName = "sv0";
+                v.DepotMan = "RfIj";
+                v.DepotTelephone = "4hHb";
+                v.DepotAddress = "1eFM";
+                v.DepotDesc = "CjC9";
                 context.Set<Depots>().Add(v);
                 context.SaveChanges();
                 }

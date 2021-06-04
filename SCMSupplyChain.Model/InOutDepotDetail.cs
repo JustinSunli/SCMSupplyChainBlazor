@@ -19,7 +19,6 @@ namespace SCMSupplyChain.Model
         public Guid? ProductsID { get; set; }
 
         [Display(Name = "商品")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public Products Products { get; set; }
 
         [Display(Name ="数量")]

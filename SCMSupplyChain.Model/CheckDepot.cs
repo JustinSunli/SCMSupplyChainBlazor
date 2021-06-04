@@ -9,18 +9,16 @@ namespace SCMSupplyChain.Model
     {
         [Display(Name = "调出仓库")]
         [Required(ErrorMessage="{0}不能为空")]
-        public Guid DepotsID { get; set; }
+        public Guid? DepotsID { get; set; }
 
         [Display(Name = "调出仓库")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public Depots Depots { get; set; }
 
         [Display(Name = "盘点人")]
         [Required(ErrorMessage = "{0}不能为空")]
-        public Guid FrameworkUserID { get; set; }
+        public Guid? FrameworkUserID { get; set; }
 
         [Display(Name = "盘点人")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public FrameworkUser FrameworkUser { get; set; }
 
         [Display(Name = "状态")]

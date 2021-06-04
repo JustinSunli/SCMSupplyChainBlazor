@@ -17,7 +17,6 @@ namespace SCMSupplyChain.Model
         public Guid? DepotsID { get; set; }
 
         [Display(Name = "仓库")]
-        [Required(ErrorMessage = "{0}不能为空")]
         public Depots Depots { get; set; }
 
         [Display(Name ="状态")]
